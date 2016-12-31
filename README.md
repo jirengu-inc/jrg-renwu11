@@ -1,6 +1,7 @@
 # 使用步骤
 
 1. 获取本 repo 读写权限
+2. 确保你的 ssk key 已上传
 2. `git clone git@github.com:jirengu-inc/jrg-renwu11.git`
 3. `cd jrg-renwu11`
 4. `git config --global user.name 你的名字`
