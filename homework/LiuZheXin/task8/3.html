@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+	<title>代码3</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#wrapper{
+			width: 600px;
+			margin: 0 auto;
+		}
+		#wrapper>table{
+			margin-top: 30px;
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+		#wrapper>table>thead{
+			font-weight: bold;
+		}
+		#wrapper td{
+			padding: 8px;
+		}
+		#wrapper>table td:nth-child(1){
+			width: 211px;
+		}
+		#wrapper>table td:nth-child(2){
+			width: 209px;
+		}
+		#wrapper>table td:nth-child(3){
+			width: 130px;
+		}
+		#wrapper>table:first-child>thead{
+			background-color: #4CAF50;
+			color: #fff;
+		}
+		#wrapper>table>tbody>tr:nth-child(odd){
+			background-color: rgb(241, 241, 241);
+		}
+		#wrapper>table:first-child{
+			border: 1px solid #ddd;
+		}
+		#wrapper>table:first-child>td{
+			border: 1px solid #ddd;
+			border-right-width: 0;
+		}
+		#wrapper>table:last-child>tbody>tr:nth-child(odd){
+			border-top: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
+		}
+	</style>
+</head>
+<body>
+    <div id="wrapper">
+        <table>
+        	<thead>
+        	    <tr>
+	        	    <td>First Name</td>
+	        	    <td>Last Name</td>
+	        	    <td>Points</td>
+        	    </tr>
+        	</thead>
+        	<tbody>
+	        	<tr>
+		        	<td>Jill</td>
+		        	<td>Smith</td>
+		        	<td>50</td>
+	        	</tr>
+	        	<tr>
+		        	<td>Eve</td>
+		        	<td>Jackson</td>
+		        	<td>94</td>
+	        	</tr>
+	        	<tr>
+	        		<td>Adam</td>
+	        		<td>Johnson</td>
+	        		<td>67</td>
+	        	</tr>
+	        	<tr>
+	        		<td>BO</td>
+	        		<td>Nilsson</td>
+	        		<td>50</td>
+	        	</tr>
+	        	<tr>
+	        		<td>Mike</td>
+	        		<td>Ross</td>
+	        		<td>35</td>
+	        	</tr>
+        	</tbody>
+        </table>
+        <table>
+        	<thead>
+        	    <tr>
+	        	    <td>First Name</td>
+	        	    <td>Last Name</td>
+	        	    <td>Points</td>
+        	    </tr>
+        	</thead>
+        	<tbody>
+	        	<tr>
+		        	<td>Jill</td>
+		        	<td>Smith</td>
+		        	<td>50</td>
+	        	</tr>
+	        	<tr>
+		        	<td>Eve</td>
+		        	<td>Jackson</td>
+		        	<td>94</td>
+	        	</tr>
+	        	<tr>
+	        		<td>Adam</td>
+	        		<td>Johnson</td>
+	        		<td>67</td>
+	        	</tr>
+	        	<tr>
+	        		<td>BO</td>
+	        		<td>Nilsson</td>
+	        		<td>50</td>
+	        	</tr>
+	        	<tr>
+	        		<td>Mike</td>
+	        		<td>Ross</td>
+	        		<td>35</td>
+	        	</tr>
+        	</tbody>
+        </table>
+    </div>
+</body>
+</html>
