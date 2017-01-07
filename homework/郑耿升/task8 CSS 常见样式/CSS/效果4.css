@@ -1,0 +1,39 @@
+div{
+	width: 0;
+	margin-top: 30px;
+	margin-left: 30px;
+	border-top: 25px solid blue;
+	border-left: 25px solid red;
+	border-bottom: 25px solid green;
+	border-right: 25px solid yellow;
+}
+.d-top {
+	border-left: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	border-right: 25px solid transparent;
+}
+.d-left {
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	border-right: 25px solid transparent;
+}
+.d-bottom {
+	border-top: 25px solid transparent;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+}
+.d-right {
+	border-top: 25px solid transparent;
+	border-left: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+}
+.f{	
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid red;
+	border-right: 25px solid transparent;
+}
+.g{
+	border-top: 25px solid transparent;
+	border-left: 25px solid transparent;
+	border-right: 25px solid green;
+}
