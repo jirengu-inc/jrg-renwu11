@@ -1,0 +1,9 @@
+a{
+	display: block;
+	width: 211px;
+	height: 205px;
+	background: url(../IMG/jirengu.jpg);
+}
+a:hover{
+	background: url(../IMG/jirengu.jpg) 0 200px;
+}
