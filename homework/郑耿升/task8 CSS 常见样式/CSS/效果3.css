@@ -1,0 +1,42 @@
+body {
+    font-family: arial;
+}
+.layout {
+	width: 600px;
+	margin: 0 auto;
+}
+.layout>table {
+    margin-top: 30px;
+}
+
+.h-table {
+    border-collapse: collapse; /*表格边框是否分开*/
+    border-spacing: 0; /*表格边框距离 水平 垂直 seperate才有效*/
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.h-table tr {
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+.h-table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+.h-table th {
+    color: #fff;
+    background-color: #4CAF50;
+    padding: 8px 8px;
+    font-weight: bold;
+}
+.h-table td {
+    padding: 8px 8px;
+}
+.h-table.v1{
+    border: 0;
+	
+}
+.h-table.v1 th {
+    background-color: #fff;
+    color: #000;
+}
