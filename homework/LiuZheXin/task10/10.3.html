@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>代码3</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    html{
+	    	height: 100%;
+	    	background-color: #666;
+	    }
+	    #wrapper{
+	    	width: 600px;
+	    	margin: 0 auto;
+	    }
+	    #modal-box{
+	    	position: fixed;
+	    	top: 0;
+	    	left: 0;
+	    	bottom: 0;
+	    	right: 0;
+	    	background-color: rgba(0,0,0,0.2);
+	    }
+	    #modal-pannel{
+	    	width: 600px;
+	    	position: absolute;
+	    	top: 50%;
+	    	left: 50%;
+	    	transform: translate(-50%, -50%);
+	    	background-color: #fff;
+	    }
+	    #modal-pannel>.caption{
+	    	width: 100%;
+	    	height: 60px;
+	    	background-color: #009688;
+	    	color: #fff;
+	    	position: relative;
+	    }
+	    #modal-pannel>.caption>h2{
+	    	line-height: 60px;
+	    	padding-left: 16px;
+	    }
+	    #modal-pannel>.caption>.close{
+	    	position: absolute;
+	    	right: 16px;
+	    	top: 20px;
+	    	cursor: pointer;
+	    }
+	    #modal-pannel>main{
+	    	padding: 16px;
+	    }
+	    #modal-pannel>main>p{
+	    	line-height: 1.5;
+	    }
+	</style>
+</head>
+<body>
+    <div id="wrapper">
+        <p>页面内容在此</p>
+        <p>页面内容在此</p>
+        <p>页面内容在此</p>
+        <p>页面内容在此</p>
+        <p>页面内容在此</p>
+        <div id="modal-box">
+            <div id="modal-pannel">
+                <header class="caption">
+                    <h2>头部</h2>
+                    <span class="close">×</span>
+                </header>
+                <main>
+	                <p>这是内容</p>
+	                <p>这是内容</p>
+                </main>
+                <footer class="caption">
+                    <h2>尾部</h2>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
