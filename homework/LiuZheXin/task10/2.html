@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>代码2</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    	border: none;
+	    }
+		#wrapper{
+			width: 600px;
+			margin: 0 auto;
+		}
+		#table{
+			width: 100%;
+			margin-top: 30px;
+			box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.2);
+			overflow: hidden;
+		}
+		#table>h2{
+			width: 568px;
+			background-color: #009688;
+			color: #fff;
+			padding: 15px 16px;
+		}
+		#table>form{
+			margin: 16px;
+		}
+		#table>form>div{
+			margin-top: 16px;
+			overflow: auto;
+		}
+		#table>form input[type=text],#table>form textarea{
+			display: block;
+			width: 100%;
+			outline: none;
+			border-bottom: 1px solid #757575;
+			padding: 8px;
+		}
+		#table>form textarea{
+			height: 60px;
+		}
+		label, input[type=checkbox],input[type=radio]{
+			color: #757575;
+		}
+		#table>form>div:nth-child(4){
+			font-size: 0; /* 清除display: inline-block;的间隙 */
+		}
+		#drinks, #sex{
+			width: 50%;
+			display: inline-block;
+			font-size: 16px;
+			vertical-align: top;
+		}
+		#drinks>*, #sex>*{
+			margin-top: 10px;
+			margin-left: 5px;
+		}
+		#table>form button{
+			background-color: #009688;
+			color: #fff;
+			padding: 8px 16px;
+		}
+	</style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="table">
+	    	<h2>信息收集表</h2>
+	    	<form method="post" action="#">
+		    	<div>
+		    		<label for="name">姓名</label>
+		    		<input type="text" name="name">
+		    	</div>
+		    	<div>
+		    		<label for="qq">QQ</label>
+		    		<input type="text" name="qq">
+		    	</div>
+		    	<div>
+		    		<label for="memo">要说的话</label>
+		    		<textarea name="memo"></textarea>
+		    	</div>
+		    	<div>
+		    		<div id="drinks">
+		    		    <input id="milk" type="checkbox" name="drinks" checked><label for="milk">Milk</label><br>
+		    		    <input id="sugar" type="checkbox" name="drinks"><label for="milk">Sugar</label><br>
+		    		    <input id="Lemon" type="checkbox" name="drinks"><label for="milk">Lemon</label>
+		    		</div>
+		    		<div id="sex">
+		    		    <input id="male" type="radio" name="sex" checked><label for="male">Male</label><br>
+		    		    <input id="female" type="radio" name="sex"><label for="female">Female</label>
+		    		</div>
+		    	</div>
+		    	<div>
+		    		<button>提交</button>
+		    	</div>
+	    	</form>
+    	</div>
+    </div>
+</body>
+</html>

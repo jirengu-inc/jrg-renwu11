@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>代码1</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    #wrapper{
+	    	width: 632px;
+	    	margin: 0 auto;
+	    }
+	    .box{
+	    	width: 600px;
+	    	height: 104px;
+	    	margin-top: 30px;
+	    	padding: 16px;
+	    	color: #ffffff;
+	    	box-sizing: border-box;
+	    	position: relative;
+	    }
+	    .box:nth-child(1){
+	    	background-color: #4CAF50;
+	    }
+	    .box:nth-child(2){
+	    	background-color: #2196F3;
+	    }
+	    .box:nth-child(3){
+	    	background-color: #f44336;
+	    }
+	    .box:nth-child(4){
+	    	background-color: #ff9800;
+	    }
+	    .box>p{
+	    	margin: 16px 0;
+	    }
+	    .close{
+	    	position: absolute;
+	    	right: 22px;
+	    	top: 12px;
+	    	cursor: pointer;
+	    	font-size: 24px;
+	    }
+	</style>
+</head>
+<body>
+    <div id="wrapper">
+    	<div class="box">
+    		<h2>恭喜你</h2>
+    		<p>获得本周学霸，继续加油吧</p>
+    		<span class="close">×</span>
+    	</div>
+    	<div class="box">
+    		<h2>通知</h2>
+    		<p>晚上上课，不要忘了</p>
+    		<span class="close">×</span>
+    	</div>
+    	<div class="box">
+    		<h2>天啊</h2>
+    		<p>竟然几天没做任务</p>
+    		<span class="close">×</span>
+    	</div>
+    	<div class="box">
+    		<h2>警告</h2>
+    		<p>学如逆水行舟，不进则退</p>
+    		<span class="close">×</span>
+    	</div>
+    </div>
+</body>
+</html>

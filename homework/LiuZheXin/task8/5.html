@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+	<title>卡片</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+		#wrapper{
+			width: 300px;
+			margin: 0 auto;
+		}
+		.card{
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+			margin-top: 50px;
+			width: 300px;
+			overflow: hidden;
+		}
+		.card>img{
+			width: 100%;
+		}
+		.card>.detail{
+			width: 280px;
+			margin: 10px 10px;
+			box-sizing: border-box;
+		}
+		.card .title{
+			width: 280px;
+			margin-bottom: 10px;
+		}
+		.one .detail>p{
+			width: 280px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.two .detail>p{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+    <div id="wrapper">
+    	<div class="card one">
+    		<img src="img/man.png" alt="头像">
+    		<div class="detail">
+    			<h2 class="title">小饥</h2>
+    			<p>前端工程师一枚，爱生活，爱和平，爱世界</p>
+    		</div>
+    	</div>
+    	<div class="card two">
+    		<img src="img/view.png" alt="风景">
+    		<div class="detail">
+    			<p>风景如画</p>
+    		</div>
+    	</div>
+    </div>
+</body>
+</html>

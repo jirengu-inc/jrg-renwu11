@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>代码10.4</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style-type: none;
+		}
+		a:link{
+			text-decoration: none;
+			color: #000;
+		}
+		a:visited{
+			color: #000;
+		}
+		a:hover{
+			background-color: #ccc;
+		}
+		#wrapper{
+			width: 600px;
+			margin: 0 auto;
+		}
+		nav{
+			background-color: #f1f1f1;
+			font-size: 0;
+			height: 35px;
+			box-shadow: 3px 3px 1px 1px rgba(102,102,102, 0.2);
+		}
+		nav>ul>li{
+			font-size: 16px;
+			display: inline-block;
+			width: 64px;
+			line-height: 35px;
+		}
+		nav>ul>li:nth-child(3){
+			position: relative;
+		}
+		nav>ul>li:nth-child(3):hover .sub{
+			display: block;
+		}
+		nav a{
+			display: block;
+			text-align: center;
+		}
+		nav .sub{
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 160px;
+			box-shadow: 3px 3px 1px 1px rgba(102,102,102, 0.2);
+		}
+		nav .sub a{
+			padding: 8px 16px;
+			text-align: left;
+		}
+	</style>
+</head>
+<body>
+    <div id="wrapper">
+        <nav>
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">作品</a></li>
+                <li>
+	                <a href="#">更多</a>
+	                <ul class="sub">
+		                <li><a href="#">GitHub</a></li>
+		                <li><a href="#">博客</a></li>
+		                <li><a href="#">知乎</a></li>
+	                </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
