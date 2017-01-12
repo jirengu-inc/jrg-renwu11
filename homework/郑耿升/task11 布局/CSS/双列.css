@@ -1,0 +1,23 @@
+.layout {
+	width: 100%；
+}
+.aside {
+	width: 200px;
+	height: 500px;
+	background: yellow;
+	float: left;
+}
+.main{
+	width: 100%;
+	height: 400px;
+	background: blue;
+	margin-left: 205px;
+}
+#footer{
+	background: #ccc;
+}
+.layout:after{
+	content: "";
+	display: block;
+	clear: both;
+}

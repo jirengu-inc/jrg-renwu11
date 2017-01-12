@@ -1,0 +1,19 @@
+body{
+	min-width: 940px;
+}
+.layout{
+	width: 940px;
+	margin: 0 auto;
+}
+#header{
+	height: 40px;
+	background: red;
+}
+#content{
+	height: 400px;
+	background: blue;
+}
+#footer{
+	height: 50px;
+	background: yellow;
+}

@@ -1,0 +1,38 @@
+.content:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.content{
+	padding-left: 110px;
+	padding-right: 110px;
+}
+.main,.aside,.slidebar{
+	float:left;
+}
+.main{
+	height: 400px;
+	background: blue;
+	width: 100%; /*2个浮动元素利用 负边距产生堆叠，*/
+}
+.aside{
+	width: 100px;
+	height: 500px;
+	background: yellow;
+	margin-left: -100%;
+	position: relative;
+	left: -100px;
+
+}
+.slidebar{
+	width: 100px;
+	height: 500px;
+	background: red;
+	margin-left: -100px;
+	position: relative;
+	left: 100px;
+
+}
+.footer{
+	background: #ccc;
+}

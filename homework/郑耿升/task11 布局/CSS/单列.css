@@ -1,0 +1,16 @@
+.layout {
+	width: 940px;
+	margin: 0 auto;
+}
+#head{
+	height: 60px;
+	background: red;
+}
+#content{
+	height: 400px;
+	background: blue;
+}
+#footer{
+	height: 50px;
+	background: yellow;
+}
