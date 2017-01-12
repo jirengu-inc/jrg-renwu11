@@ -1,0 +1,41 @@
+.layout {
+	width: 600px;
+	margin: 0 auto;
+}
+.modal{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.4);
+}
+
+.panel {
+	width: 600px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	background-color: white;
+	transform: translate(-50%, -50%);
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.header {
+	color: white;
+	background:#009688; 
+	padding:1px 16px;
+}
+
+.header>h3 span{
+	float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+.content{
+	padding: 16px;
+}
+.footer{
+	background:#009688;
+	color: white;
+	padding:1px 16px;
+}

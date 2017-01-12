@@ -1,0 +1,46 @@
+body{
+	font-family: arial;
+}
+.layout{
+	width: 600px;
+	margin: 0 auto;
+}
+.layout>.h-card{
+	padding-bottom: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.h-card>h2{
+	padding: 15px 16px;
+    background-color: #009688;
+    color: #fff;
+}
+.h-card label {
+    color: #757575;
+    vertical-align: middle;
+}
+.h-card form>div {
+    margin-top: 16px;
+    overflow: auto;
+}
+.h-card form {
+    margin: 16px;
+    overflow: auto;
+}
+.h-card input[type=text],.h-card textarea{
+	padding: 8px;
+	display: block;
+	border: none;
+	border-bottom: 1px solid #808080;
+	width: 100%
+}
+.h-card .half {
+    width: 50%;
+    float: left;
+    line-height: 1.4;
+}
+.h-card input[type=submit] {
+    padding: 8px 16px;
+    color: #fff;
+    background-color: #009688;
+    border: 0;
+}
