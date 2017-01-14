@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>双飞翼布局</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+		#wrapper:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.fu{
+			float: left;
+		}
+		.main{
+			width: 100%;
+		}
+		.main>.con{
+			height: 500px;
+			margin-left: 200px;
+			margin-right: 150px;
+			background-color: blue;
+		}
+		nav{
+			width: 200px;
+			height: 300px;
+			margin-left: -100%;
+			background-color: yellow;
+		}
+		aside{
+			width: 150px;
+			height: 300px;
+			margin-left: -150px;
+			background-color: red;
+		}
+		article
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div class="main fu">
+		    <article class="con">内容</article>
+	    </div>
+	    <nav class="fu">导航</nav>
+	    <aside class="fu">侧边栏</aside>
+    </div>
+</body>
+</html>

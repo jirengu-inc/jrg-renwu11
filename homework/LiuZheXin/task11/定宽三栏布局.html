@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>定宽三栏布局</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	    #wrapper{
+	    	width: 960px;
+	    	margin: 0 auto;
+	    }
+	    #wrapper:after{
+	    	content: "";
+	    	display: block;
+	    	clear: both;
+	    }
+	    .fu{
+	    	float: left;
+	    }
+	    nav{
+	    	width: 200px;
+	    	height: 300px;
+	    	background-color: yellow;
+	    }
+	    article{
+	    	width: 550px;
+	    	height: 500px;
+	    	background-color: blue;
+	    }
+	    aside{
+	    	width: 150px;
+	    	height: 300px;
+	    	background-color: red;
+	    }
+	</style>
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="fu">导航</nav>
+        <article class="fu">内容</article>
+        <aside class="fu">侧边栏</aside>
+    </div>
+</body>
+</html>
