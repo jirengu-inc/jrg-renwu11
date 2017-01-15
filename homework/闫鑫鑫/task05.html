@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task 05</title>
+</head>
+<body>
+	<form class="info" method="post" action="/signup.js">
+		<div class="username">
+			<label>姓名:</label>
+			<input type="text" name="username" placeholder="用户名">
+		</div>
+		<div class="password">
+			<label>密码:</label>
+			<input type="password" name="password" placeholder="请输入密码">
+		</div>
+		<div class="gender">
+			<label>性别:</label>
+			<input type="radio" name="gender" value="male" checked="checked">男
+			<input type="radio" name="gender" value="female">女
+		</div>
+		<div class="orientation">
+			<label>取向:</label>
+			<input type="radio" name="orientation" value="male">男
+			<input type="radio" name="orientation" value="female" checked="checked">女
+		</div>
+		<div class="hobby">
+			<label>爱好:</label>
+			<input type="checkbox" name="hobby" value="dota">dota
+			<input type="checkbox" name="hobby" value="travel" checked="checked">旅游
+			<input type="checkbox" name="hobby" value="pet" checked="checked">宠物
+		</div>
+		<div class="comment">
+			<label>评论:</label>
+			<textarea class="comment" rows="15" cols="60" placeholder="ddd"></textarea>
+		</div>
+		<div class="city">
+			<label>我的city:</label>
+			<select name="city">
+				<option selected="selected" value="Beijing">Beijing</option>
+				<option value="Shanghai">Shanghai</option>
+				<option value="Shengzhen">Shengzhen</option>
+			</select>
+			<input type="submit" name="bt_submit">
+		</div>
+	</form>
+</body>
+</html>
