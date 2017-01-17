@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>三角代码1</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	    .tran {
+	    	width: 300px;
+	    	height: 100px;
+	    	border: 1px solid #666;
+	    	margin: 20px;
+	    	position: relative;
+	    }
+	    .tran:before {
+	    	content: "";
+	    	display: block;
+	    	width: 0;
+	    	height: 0;
+	    	border-top: 10px solid transparent;
+	    	border-right: 10px solid transparent;
+	    	border-left: 10px solid transparent;
+	    	border-bottom: 10px solid #666;
+	    	position: absolute;
+	    	top: -20px;
+	    	left: 10px;
+	    }
+	</style>
+</head>
+<body>
+    <div class="tran"></div>
+</body>
+</html>
