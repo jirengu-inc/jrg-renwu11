@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<title>我的拼音</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			font-family: "Microsoft Yahei";
+		}
+		a:link {
+			color: #fff;
+			text-decoration: none;
+		}
+		a:visited {
+			color: #fff;
+			text-decoration: none;
+		}
+		a:hover {
+			color: #fff;
+			text-decoration: none;
+		}
+		a:active {
+			color: #fff;
+			text-decoration: none;
+		}
+		#wrapper {
+			width: 500px;
+			margin: 0 auto;
+			background: rgb(255,242,228);
+		}
+		#wrapper>h1 {
+			text-align: center;
+			color: rgb(128,149,146);
+		}
+		#wrapper>h3 {
+			text-align: center;
+			color: rgb(128,149,146);
+			font: 12px/100px normal;
+		}
+		#wrapper .nav{
+			font-size: 0;
+			text-align: center;
+		}
+		#wrapper .nav li {
+			display: inline-block;
+			margin-right: 10px;
+			background: rgb(116,183,145);
+			border-radius: 2px;
+		}
+		#wrapper .nav li>a {
+			font-size: 14px;
+			display: block;
+			cursor: pointer;
+			padding: 5px 10px;
+		}
+		#wrapper>nav li:first-child {
+			background: rgb(172,207,178);
+		}
+		#wrapper>section {
+			margin: 50px 50px 0;
+		}
+		#wrapper>section .nav {
+			margin: 30px 0;
+		}
+		#wrapper>section>p {
+			text-align: center;
+			color: rgb(128,149,146);
+		}
+		#wrapper>section>p>author {
+			color: rgb(116,183,145);
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<h1>我的项目</h1>
+		<h3>一句话项目介绍</h3>
+		<nav>
+			<ul class="nav">
+				<li><a href="#">项目1</a></li>
+				<li><a href="#">项目2</a></li>
+				<li><a href="#">项目3</a></li>
+				<li><a href="#">项目4</a></li>
+				<li><a href="#">项目5</a></li>
+			</ul>
+		</nav>
+		<section>
+			<img src="bg.png" alt="我的项目logo">
+			<ul class="nav">
+				<li><a href="#">查看源码</a></li>
+				<li><a href="#">使用说明</a></li>
+			</ul>
+			<p>作者：<author>我</author></p>
+		</section>
+	</div>
+</body>
+</html>

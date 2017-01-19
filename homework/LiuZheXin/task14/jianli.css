@@ -1,0 +1,163 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#wrapper {
+	width: 960px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 20px 20px;
+}
+#wrapper>header {
+	width: 100%;
+	position: relative;
+}
+#wrapper>header>img {
+	width: 150px;
+	height: 150px;
+	border-radius: 50% 50%;
+	vertical-align: middle;
+}
+#wrapper>header>.name {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 30px;
+}
+#wrapper>header>.name>h1 {
+	font-weight: normal;
+}
+#wrapper>header>.name>h5 {
+	padding-left: 3px;
+}
+#wrapper>header>.contact {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+}
+#wrapper>header>.contact>h3 {
+	padding-right: 100px;
+	border-bottom: 3px solid #000;
+}
+#wrapper>header>.contact>ul {
+	margin-top: 10px;
+}
+#wrapper>header>.contact li {
+	line-height: 1.5;
+}
+#wrapper>header>.contact .emphasis {
+	font-weight: bold;
+	display: inline-block;
+	width: 25px;
+}
+.exp {
+	margin-top: 30px;
+}
+.exp>h3 {
+	width: 50%;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
+.exp>ul {
+	margin-top: 20px;
+}
+.exp .place {
+	font-weight: bold;
+}
+.exp .place>time {
+	font-weight: normal;
+	color: #ccc;
+}
+.exp>ul>li {
+	border-left: 1px solid #000;
+	padding-left: 75px;
+	position: relative;
+}
+.exp>ul>li:before {
+	content: "";
+	width: 10px;
+	height: 10px;
+	border-radius: 50% 50%;
+	background: #000;
+	position: absolute;
+	top: 0;
+	left: -5px;
+}
+.exp>ul>li>p:last-child {
+	padding-bottom: 20px;
+}
+.exp>ul>li:last-child>p:last-child {
+	padding-bottom: 0;
+}
+.exp>ul>li>p {
+	line-height: 1.5;
+}
+.exp>ul>li>.place {
+    line-height: 1;
+	margin-bottom: 10px;
+}
+.exp .place>.major {
+	color: #ccc;
+	display: block;
+	font-weight: normal;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.additional-info {
+	margin-top: 30px;
+}
+.additional-info>div {
+	float: left;
+	width: 450px;
+	box-sizing: border-box;
+}
+.additional-info>div:first-child {
+	margin-right: 60px;
+}
+.additional-info>div>.title {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px;
+}
+.additional-info>div>ul {
+	margin-top: 20px;
+}
+.additional-info>.extra>ul>li {
+	margin-bottom: 10px;
+	padding-left: 50px;
+}
+.additional-info>div>ul>li {
+	position: relative;
+}
+.additional-info>div>ul>li:before {
+	content: "+";
+	display: block;
+	border: 1px solid #000;
+	width: 16px;
+	height: 16px;
+	line-height: 16px;
+	text-align: center;
+	border-radius: 50% 50%;
+	position: absolute;
+	top: 0;
+	left: -8px;
+}
+.additional-info>.extra>ul>li>p:first-child {
+	font-size: 16px;
+	line-height: 1;
+	margin-bottom: 10px;
+}
+.additional-info>.extra>ul>li>p:last-child {
+	font-size: 14px;
+	line-height: 1.5;
+}
+.additional-info>.skill>ul>li {
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+	padding: 0 60px;
+	margin-bottom: 50px;
+}
