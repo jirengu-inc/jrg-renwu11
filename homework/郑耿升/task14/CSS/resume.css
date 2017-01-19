@@ -1,0 +1,183 @@
+/*css reset begin*/
+body,
+div,
+ul,
+li,
+dl,
+dt,
+dd,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin:0;
+    padding: 0;
+ }
+body{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+}
+img {
+    border:none;
+}
+ul,
+li {
+    list-style: none;
+}
+/*css reset end*/
+
+/*css common begin*/
+.clearfix {
+    *zoom: 1;
+}
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.fl {
+    float: left;
+}
+.fr{
+    float: right;
+}
+.public-container {
+    width: 1100px;
+    margin:0 auto;
+}
+/*css common end*/
+
+/*resume profile begin*/
+.resume-profile {
+    margin-top: 96px;
+}
+.resume-profile .resume-photo {
+    margin-right: 49px;
+}
+.resume-photo > img {
+    width: 197px;
+    height: 197px;
+    border-radius: 50%;
+}
+.resume-profile .resume-name-job {
+    margin-top:52px;
+}
+
+.resume-profile .resume-name-job .resume-name {
+    color: #000;
+}
+
+.resume-name-job .resume-job {
+    margin-top:10px;
+    color: #000;
+    font-weight: bold;
+}
+.resume-profile .resume-contact {
+    width: 428px;
+}
+.resume-contact .contact-head {
+    line-height:30px;
+    border-bottom:4px solid #000;
+}
+.resume-contact .resume-contact-details {
+    margin-top:10px;
+}
+.resume-contact .contact-item {
+    line-height:30px;
+}
+.resume-contact .contact-item .title {
+   font-weight: bold;
+}
+.resume-contact .contact-item .desc {
+    padding-left:18px;
+}
+/*resume profile end*/
+
+/*resume work experience begin*/
+.resume-work-experience , .resume-education{
+    position: relative;
+    margin-top:64px;
+}
+.resume-work-experience:after{
+    content:"";
+    position:absolute;
+    top:75px;
+    left:14px;
+    display: block;
+    height:460px;
+    border-left: 1px solid #000;
+}
+.resume-education:after{
+    content:"";
+    position:absolute;
+    top:108px;
+    left:14px;
+    display: block;
+    height:300px;
+    border-left: 1px solid #000;
+}
+.resume-work-experience .work-experience-head, .resume-education .education-head{
+    line-height:59px;
+    width: 522px;
+    border-bottom: 2px solid #dbdbdb;
+}
+
+.work-experience-list, .education-list {
+    margin-top:36px;
+    margin-left: 30px;
+}
+.work-experience-list .work-experience-item, .education-list .education-item {
+    padding-left:115px;
+    margin-bottom: 32px;
+    list-style: disc ;
+    font-size: 20px;
+}
+.work-experience-item .content, .education-item .content{
+    margin-top:10px;
+    line-height:25px;
+}
+/*resume work experience end*/
+
+/* resume extra and skill begin*/
+.resume-extra {
+    width: 522px;
+}
+.resume-extra .resume-extra-head, .resume-skill-head{
+    line-height: 58px;
+    border-bottom:1px solid #666666;;
+}
+.resume-extra-list .desc {
+    margin-left: 114px;
+    margin-top:34px;
+}
+.resume-extra-list .desc .content {
+    margin-top:10px;
+    line-height:25px;
+}
+.icon-jiahao {
+    font-size:30px !important;
+}
+.resume-skill {
+    width: 460px;
+    margin-left:115px;
+}
+
+.resume-skill-list {
+    margin-top:34px;
+}
+.resume-skill-item {
+    width: 216px;
+    margin-bottom: 65px;
+}
+.resume-skill-item .text {
+    margin-left:40px;
+    line-height:30px;
+}
