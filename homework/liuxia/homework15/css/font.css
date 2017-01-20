@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'icon-font';
+    src: url('../font/fontawesome-webfont.eot?v=3.2.1');
+    src: url('../font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'),
+    url('../font/fontawesome-webfont.woff?v=3.2.1') format('woff'),
+    url('../font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'),
+    url('../font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'montserrat';
+
+    src: url('../font/Montserrat-Bold.eot');
+    src: url('../font/Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../font/Montserrat-Bold.woff') format('woff'),
+    url('../font/Montserrat-Bold.ttf') format('truetype'),
+    url('../font/Montserrat-Bold.svg#glyphicons_halflingsregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'kaushan-script';
+    src: url('../font/kaushanscript-regular.eot');
+    src: url('../font/kaushanscript-regular.eot?#iefix') format('embedded-opentype'),
+    url('../font/kaushanscript-regular.woff') format('woff'),
+    url('../font/kaushanscript-regular.ttf') format('truetype'),
+    url('../font/kaushanscript-regular.svg#kaushan_scriptregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'droid-serif';
+    src: url('../font/droidserif-webfont.eot');
+    src: url('../font/droidserif-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/droidserif-webfont.woff') format('woff'),
+    url('../font/droidserif-webfont.ttf') format('truetype'),
+    url('../font/droidserif-webfont.svg#droid_serifregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'roboto-slab';
+    src: url('../font/robotoslab-light-webfont.eot');
+    src: url('../font/robotoslab-light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/robotoslab-light-webfont.woff') format('woff'),
+    url('../font/robotoslab-light-webfont.ttf') format('truetype'),
+    url('../font/robotoslab-light-webfont.svg#roboto_slablight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
