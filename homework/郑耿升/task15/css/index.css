@@ -1,0 +1,359 @@
+/*css reset b*/
+body,
+div,
+p,
+a,
+ul,
+ol,
+li,
+dd,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span{
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border:none;
+}
+
+a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+body {
+    font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+}
+ul,
+li {
+    list-style: none;
+}
+.clearfix {
+    *zoom:1;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+/*css reset e*/
+
+/*css common b*/
+.public-container {
+    width: 1150px;
+    margin:0 auto;
+}
+.icon {
+    display: inline-block;
+    margin:0 auto;
+    width: 112px;
+    vertical-align: middle;
+    line-height: 90px;
+    border-radius: 50%;
+    background: #fed136;
+}
+.common-title {
+    padding-top: 148px;
+    font-size: 3em;
+}
+.common-center {
+    text-align: center;
+}
+
+.common-content {
+    margin-top:8px;
+    font-style: italic;
+}
+
+.iconfont {
+    color: #fff;
+    font-size: 3em !important;
+}
+.index-common-list {
+    margin-left: -25px;
+    margin-right: -25px;
+    padding: 70px 0 170px;
+}
+.common-wrapper {
+    height: 100px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.common-item {
+    width: 360px;
+    padding-left: 20px;
+    padding-right:20px;
+    padding-bottom: 26px;
+
+}
+.common-item-title {
+    margin-top:20px;
+}
+.common-item-content {
+    margin-top:10px;
+    padding-bottom: 30px;
+    line-height:1.5;
+    color:#aaa;
+
+}
+/*css commo e*/
+
+/*css index header b*/
+#index-header {
+    position: fixed;
+    width: 100%;
+    line-height:52px;
+    padding:24px 0;
+}
+
+#index-header .index-logo > a {
+    color: #fed136;
+    font-size: 2em;
+}
+
+.index-nav .item a{
+    padding-left:32px;
+}
+/*css index header e*/
+
+/*css index banner b*/
+#index-banner {
+    background: url("../images/index-banner-bg.jpg");
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+}
+.index-banner-intro {
+    padding-top:300px;
+    padding-bottom:202px;
+}
+.index-banner-intro .intro-title {
+    font-size: 3em;
+}
+.index-banner-intro .intro-content {
+    margin-top:10px;
+    font-size: 5em;
+}
+.index-banner-intro .intro-btn {
+    display: inline-block;
+    font-size: 1.5em;
+    margin-top:60px;
+    padding: 20px 30px;
+    background: #fed136;
+    border-radius: 3px;
+}
+/*css index banner e*/
+
+/*css index service b*/
+/*css index service e*/
+
+/*css index portfolio b*/
+#index-portfolio {
+    background: #f7f7f7;
+}
+/*css index portfolio e*/
+
+/*css index about b*/
+#index-about {
+    background: #fff;
+    line-height: 1.6;
+}
+.about-common-wrapper {
+    width: 347px;
+    padding: 0 20px 20px 100px;
+}
+.about-common-wrapper > h4 {
+    font-size:1.5em;
+}
+.about-item {
+    margin-bottom: 100px;
+    position:relative;
+}
+.about-item:nth-child(odd) {
+    text-align: right;
+}
+.about-item:nth-child(even) {
+    text-align: left;
+}
+.bg{
+    color:#fff;
+    font-size:1.4em;
+    background:#fed136 ;
+    text-align:center;
+}
+.about-item:nth-child(even) .about-common-wrapper{
+    padding: 0 100px 20px 20px;
+}
+.img-wrapper {
+    width: 156px;
+    height: 156px;
+    border-radius: 50%;
+    border:7px solid #f1f1f1;
+    margin:0 auto;
+}
+.img-wrapper > img{
+    width: 156px;
+    height: 156px;
+    border-radius: 50%;
+}
+.index-about-list {
+    position: relative;
+    margin: 70px 0 170px;
+}
+.index-about-list:before {
+    top: 0;
+    bottom: 0;
+    left:50%;
+    position: absolute;
+    content: "";
+    width: 2px;
+    background-color: #f1f1f1;
+    margin-left: -1.5px;
+}
+.bg h4{
+    display: inline-block;
+    margin-top:40px;
+}
+/*css index about e*/
+
+/*css index about b*/
+
+#index-team {
+    background: #f7f7f7;
+}
+
+#index-team .common-item  > img {
+    border: 7px solid #fff;
+    border-radius: 50%;
+}
+#index-team .common-item .common-item-title {
+    font-size: 1.3em;
+}
+#index-team  .common-item  .common-item-content {
+    margin-top:0;
+    margin-bottom:10px;
+    padding: 0;
+}
+
+.social-btn {
+    display: inline-block;
+    width: 40px;
+    line-height: 40px;
+    margin:0 5px;
+    font-size:2em !important;
+    background: #000;
+    border-radius: 50%;
+}
+#index-team .index-common-list {
+    padding-bottom:0;
+}
+.index-team-intro {
+    width: 750px;
+    line-height:1.6;
+    margin-left:195px;
+    margin-top: 30px;
+    padding-bottom: 163px;
+}
+/*css index about e*/
+/*css index client b*/
+#index-client a {
+    padding: 0 10px;
+}
+#index-client img {
+    margin:50px 32px;
+}
+/*css index clinet e*/
+/*css index contect b*/
+
+#index-contact {
+    color: #fff;
+    background-image: url("../images/map-image.png");
+    background-color: #222;;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.rows {
+    margin-top: 70px;
+}
+.col-m {
+    width: 540px;
+    padding: 0 15px;
+}
+.col-m input {
+    display: block;
+    width: 100%;
+    padding:20px 0;
+    margin-bottom: 22px;
+    color: #540;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+.col-m textarea {
+    width: 100%;
+    height: 172px;
+    padding:20px 0;
+    margin-bottom:40px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline:none;
+}
+.col-l{
+    clear: both;
+}
+.send-btn {
+    color: #fff;
+    background-color: #fed136;
+    border: none;
+    font-weight: 700;
+    border-radius: 3px;
+    font-size: 18px;
+    padding: 20px 40px;
+    outline:none;
+}
+#index-contact form {
+    padding-bottom:150px;
+}
+/*css index contect e*/
+/*css index footer b*/
+#index-footer {
+    padding: 25px 0;
+    line-height: 43px;
+    text-align: center;
+}
+#index-footer .copyright {
+    font-weight:500;
+    margin-left: 80px;
+}
+#index-footer .policy-terms {
+    color: #fed136;
+    margin-right: 80px;
+}
+#index-footer .social-btn-group {
+    display: inline-block;
+}
+/*css index footer e*/
