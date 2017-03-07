@@ -1,12 +1,17 @@
-html,body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd {
+html,body,header,h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd {
     margin: 0;
     padding: 0;
 }
 
 body {
-    font: 14px/1.8 Arial;
+    font: 18px/1.8 Arial;
     color: #333;
     background: #fff;
+}
+
+h2 {
+    font-size: 40px;
+    color: #000;
 }
 
 li {
@@ -15,6 +20,11 @@ li {
 
 a {
     text-decoration: none;
+}
+
+.layout {
+    width: 900px;
+    margin: 0 auto;
 }
 
 .clearfix::after {
@@ -81,13 +91,13 @@ a {
 }
 
 #head .wrap h2 {
-    font-size: 35px;
+    font-size: 45px;
     color: #000;
 }
 
 
 #head .wrap h1 {
-    font-size: 50px;
+    font-size: 60px;
     color: #000;
 }
 
@@ -105,3 +115,73 @@ a {
 #head .wrap a:hover {
     background: #fec503;
 }
+
+#feature {
+    background: #f7f7f7;
+    text-align: center;
+}
+
+#feature header {
+    padding-top: 100px;
+}
+
+#feature .description ul {
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+#feature .description ul li {
+    float: left;
+    width: 280px;
+    height: 300px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background: #fff;
+    position: relative;
+}
+
+#feature .description ul li:nth-child(3) {
+    margin-right: 10px;
+}
+
+#feature .description ul li:nth-child(6) {
+    margin-right: 10px;
+}
+
+#feature .description ul li img {
+    display: block;
+    width: 280px;
+    height: 170px;
+}
+
+#feature .description ul li .cover {
+    display: block;
+    width: 280px;
+    height: 170px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(254,209,54,.9);
+    font-size: 60px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 170px;
+    z-index: 1;
+    opacity: 0;
+}
+
+#feature .description ul li .cover:hover {
+    opacity: 1;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+#agent {
+    text-align: center;
+}
+
+#agent h2 {
+    padding-top: 100px;
+}
+
+
