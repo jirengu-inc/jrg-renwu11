@@ -1,0 +1,87 @@
+html,body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 14px/1.8 Arial;
+    color: #333;
+    background: #fff;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.clearfloat::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+#head {
+    text-align: center;
+    color: #fff;
+}
+
+#head>img {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+}
+
+.navigator {
+    width: 100%;
+    padding-top: 35px;
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+}
+
+.navigator .nav-left {
+    float: left;
+}
+
+.navigator h3 {
+    font-size: 35px;
+    font-style: italic;
+    vertical-align: center;
+    line-height: 1;
+}
+
+.navigator nav ul li {
+    float: right;
+}
+
+.navigator nav ul li a {
+    color: #fff;
+    font-size: 20px;
+    padding-right: 10px;
+    vertical-align: center;
+    line-height: 1;
+}
+
+.navigator nav ul li a:hover {
+    color: #bbb;
+}
+
+#head h2 {
+    font-size: 50px;
+    vertical-align: middle;
+}
+
+#head h2::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#head h1 {
+    font-size: 65px;
+}

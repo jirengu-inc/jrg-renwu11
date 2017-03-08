@@ -1,0 +1,187 @@
+html,body,header,h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 18px/1.8 Arial;
+    color: #333;
+    background: #fff;
+}
+
+h2 {
+    font-size: 40px;
+    color: #000;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.layout {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+#head {
+    color: #fff;
+    text-align: center;
+}
+
+#head img {
+    display: block;
+}
+
+.navigator {
+    width: 100%;
+    padding-top: 35px;
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    z-index: 1;
+    top: 0;
+}
+
+.navigator .nav-left {
+    float: left;
+}
+
+.navigator h3 {
+    font-size: 35px;
+    font-style: italic;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.navigator nav {
+    float: right;
+}
+
+.navigator nav ul li {
+    float: left;
+}
+
+.navigator nav ul li a {
+    color: #fff;
+    font-size: 20px;
+    padding-right: 10px;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.navigator nav ul li a:hover {
+    color: #bbb;
+}
+
+.wrap {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+}
+
+#head .wrap h2 {
+    font-size: 45px;
+    color: #000;
+}
+
+
+#head .wrap h1 {
+    font-size: 60px;
+    color: #000;
+}
+
+#head .wrap a {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: #fed136;
+    margin-top: 60px;
+}
+
+#head .wrap a:hover {
+    background: #fec503;
+}
+
+#feature {
+    background: #f7f7f7;
+    text-align: center;
+}
+
+#feature header {
+    padding-top: 100px;
+}
+
+#feature .description ul {
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+#feature .description ul li {
+    float: left;
+    width: 280px;
+    height: 300px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background: #fff;
+    position: relative;
+}
+
+#feature .description ul li:nth-child(3) {
+    margin-right: 10px;
+}
+
+#feature .description ul li:nth-child(6) {
+    margin-right: 10px;
+}
+
+#feature .description ul li img {
+    display: block;
+    width: 280px;
+    height: 170px;
+}
+
+#feature .description ul li .cover {
+    display: block;
+    width: 280px;
+    height: 170px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(254,209,54,.9);
+    font-size: 60px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 170px;
+    z-index: 1;
+    opacity: 0;
+}
+
+#feature .description ul li .cover:hover {
+    opacity: 1;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+#agent {
+    text-align: center;
+}
+
+#agent h2 {
+    padding-top: 100px;
+}
+
+
