@@ -1,187 +1,335 @@
-html,body,header,h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd {
+html, body, header, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd {
     margin: 0;
     padding: 0;
 }
-
 body {
     font: 18px/1.8 Arial;
     color: #333;
     background: #fff;
 }
-
 h2 {
     font-size: 40px;
     color: #000;
 }
-
 li {
     list-style: none;
 }
-
 a {
     text-decoration: none;
 }
-
 .layout {
     width: 900px;
     margin: 0 auto;
 }
-
 .clearfix::after {
-    content: "";
-    clear: both;
     display: block;
+    clear: both;
+    content: '';
 }
-
 #head {
-    color: #fff;
     text-align: center;
+    color: #fff;
 }
-
 #head img {
     display: block;
 }
-
 .navigator {
+    position: fixed;
+    z-index: 2;
+    top: 0;
     width: 100%;
     padding-top: 35px;
-    background: rgba(0,0,0,0.5);
-    position: fixed;
-    z-index: 1;
-    top: 0;
+    background: rgba(0, 0, 0, .5);
 }
-
 .navigator .nav-left {
     float: left;
 }
-
 .navigator h3 {
     font-size: 35px;
     font-style: italic;
-    vertical-align: middle;
     line-height: 1;
+    vertical-align: middle;
 }
-
 .navigator nav {
     float: right;
 }
-
 .navigator nav ul li {
     float: left;
 }
-
 .navigator nav ul li a {
-    color: #fff;
     font-size: 20px;
+    line-height: 1;
     padding-right: 10px;
     vertical-align: middle;
-    line-height: 1;
+    color: #fff;
 }
-
 .navigator nav ul li a:hover {
     color: #bbb;
 }
-
 .wrap {
-    width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 100%;
     transform: translate(-50%, -30%);
 }
-
 #head .wrap h2 {
     font-size: 45px;
     color: #000;
 }
-
-
 #head .wrap h1 {
     font-size: 60px;
     color: #000;
 }
-
 #head .wrap a {
-    display: inline-block;
     font-size: 30px;
     font-weight: 700;
-    color: #fff;
+    display: inline-block;
+    margin-top: 60px;
     padding: 10px 15px;
+    color: #fff;
     border-radius: 5px;
     background: #fed136;
-    margin-top: 60px;
 }
-
 #head .wrap a:hover {
     background: #fec503;
 }
-
 #feature {
-    background: #f7f7f7;
+    padding-bottom: 80px;
     text-align: center;
+    background: #f7f7f7;
 }
-
 #feature header {
-    padding-top: 100px;
+    padding-top: 80px;
 }
-
 #feature .description ul {
     margin-top: 40px;
     margin-left: 10px;
 }
-
 #feature .description ul li {
+    position: relative;
     float: left;
     width: 280px;
-    height: 300px;
+    height: 310px;
     margin-right: 20px;
     margin-bottom: 20px;
     background: #fff;
-    position: relative;
 }
-
 #feature .description ul li:nth-child(3) {
     margin-right: 10px;
 }
-
 #feature .description ul li:nth-child(6) {
     margin-right: 10px;
 }
-
 #feature .description ul li img {
     display: block;
     width: 280px;
     height: 170px;
 }
-
 #feature .description ul li .cover {
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 170px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
     display: block;
     width: 280px;
     height: 170px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(254,209,54,.9);
-    font-size: 60px;
-    font-weight: 900;
-    color: #fff;
-    line-height: 170px;
-    z-index: 1;
     opacity: 0;
+    color: #fff;
+    background: rgba(254, 209, 54, .9);
 }
-
 #feature .description ul li .cover:hover {
-    opacity: 1;
     cursor: pointer;
-    transition: 0.8s;
+    transition: .8s;
+    opacity: 1;
 }
-
 #agent {
+    padding-bottom: 80px;
     text-align: center;
 }
-
-#agent h2 {
-    padding-top: 100px;
+#agent header {
+    margin-bottom: 50px;
 }
-
-
+#agent h2 {
+    padding-top: 80px;
+}
+#agent .article {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 300px;
+    text-align: right;
+}
+#agent .article h3 {
+    color: #000;
+}
+#agent img {
+    display: block;
+    height: 200px;
+    margin: 0 auto;
+}
+#agent .name {
+    position: relative;
+}
+#agent .name::before {
+    position: absolute;
+    z-index: -1;
+    top: -10px;
+    left: 340px;
+    display: block;
+    width: 220px;
+    height: 220px;
+    content: '';
+    border-radius: 110px;
+    background: #ccc;
+}
+#agent .name::after {
+    position: relative;
+    left: 50%;
+    display: block;
+    height: 100px;
+    content: '';
+    border: 0;
+    border-left: 4px solid #ccc;
+}
+#agent .name .floatright {
+    position: absolute;
+    left: 600px;
+}
+#agent .name .floatright.article {
+    text-align: left;
+}
+#agent .name:last-child::after {
+    display: none;
+}
+#favourate {
+    padding-bottom: 80px;
+    text-align: center;
+    background: #f7f7f7;
+}
+#favourate header {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+#favourate > div {
+    width: 1000px;
+    margin: 0 auto;
+}
+#favourate .head {
+    display: inline-block;
+    padding-right: 60px;
+    padding-left: 60px;
+}
+#favourate .head img {
+    width: 200px;
+}
+#favourate .head h3 {
+    color: #000;
+}
+#favourate .head .icon {
+    height: 100px;
+}
+#favourate .head .icon i {
+    font-size: 40px;
+    padding-right: 5px;
+    padding-left: 5px;
+    color: #000;
+}
+#favourate .head .icon i:hover {
+    cursor: pointer;
+    transition-duration: .6s;
+    color: #fed136;
+}
+#contact {
+    text-align: center;
+    background-image: url('./picture/8.jpg');
+}
+#contact header {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+#contact form {
+    width: 1200px;
+    margin: 0 auto;
+}
+#contact form ul {
+    width: 600px;
+    margin-right: 600px;
+}
+#contact form ul li input {
+    font-size: 18px;
+    width: 580px;
+    height: 70px;
+    margin-bottom: 50px;
+    padding-left: 10px;
+    border-radius: 8px;
+}
+#contact form textarea {
+    font-size: 18px;
+    float: right;
+    width: 560px;
+    height: 305px;
+    padding-top: 20px;
+    padding-left: 20px;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+#contact form button {
+    font-size: 24px;
+    font-weight: 800;
+    display: inline-block;
+    width: 220px;
+    height: 80px;
+    margin-top: 50px;
+    margin-bottom: 120px;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    background: #fed136;
+}
+#contact form button:hover {
+    background: #fec503;
+}
+footer {
+    font-size: 16px;
+    padding-top: 20px;
+}
+footer p {
+    position: relative;
+    top: 23px;
+    float: left;
+}
+footer span {
+    float: right;
+    padding-left: 12px;
+}
+footer span a {
+    position: relative;
+    top: 23px;
+    color: #fed136;
+}
+footer span a:hover {
+    text-decoration: underline;
+    color: #fec503;
+}
+footer .icon {
+    display: block;
+    width: 180px;
+    margin: 0 auto;
+}
+footer .icon i {
+    font-size: 40px;
+    padding-right: 8px;
+    padding-left: 8px;
+    color: #000;
+}
+footer .icon i:hover {
+    cursor: pointer;
+    transition-duration: .6s;
+    color: #fed136;
+}
