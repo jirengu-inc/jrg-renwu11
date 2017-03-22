@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        h2{
+            font-size: 18px;
+        }
+        section h2{
+            border-bottom: 2px solid #eee;
+            width: 400px;
+            margin-bottom: 0;
+        }
+        h3{
+            display: inline-block;
+            font-size: 100%;
+            margin: 10px 0 0 0;
+            position: relative;
+            font-weight: normal;
+        }
+        section p{
+            margin: 10px 0 0 0;
+        }
+        .clearfix:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .wrap{
+            line-height: 2;
+            box-sizing: border-box;
+            width: 980px;
+            margin: 0 auto;
+            font-family: sans-serif;
+            font-size: 14px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            padding: 70px 45px 30px 45px;
+        }
+        header{
+            position: relative;
+            margin-bottom: 50px; 
+        }
+        .avatar{
+            margin-left: 10px;
+            width: 160px;
+            height: 160px;
+            display: inline-block;
+        }
+        .name{
+            display: inline-block;
+            padding: 15px 0 0 30px;
+            vertical-align: top;
+        }
+        .name h1{
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+        .name p{
+            font-weight: bold;
+            margin-top: 0;
+        }
+        .contacts{
+            position: absolute;
+            width: 340px;
+            right: -45px;
+            top: -20px;
+        }
+        .contacts-captions{
+            border-bottom: 5px solid;
+            font-weight: bold;
+        }
+        .contacts-items:first-letter{
+            font-weight: bold;
+        }
+        .content span, .detail{
+            color: #ccc;
+        }
+        .content{
+            position: relative;
+            padding-left: 70px;
+            margin-left: 10px;
+        }
+        .detail{
+            line-height: 1.2;
+        }
+        .normal-section .content{
+            border-left: 2px solid #999;  
+        }
+        .normal-section h3:before{
+            content: "";
+            display: inline-block;
+            border: 5px solid;
+            border-radius: 5px;
+            position: absolute;
+            left: -76px;
+            top: 9px;
+        }
+        .normal-section .content:before{
+            content: "";
+            display: inline-block;;
+            width: 2px;
+            height: 23px;
+            background-color: #fff;
+            position: absolute;
+            left: -2px;
+        }
+        .normal-section .content:after{
+            content: "";
+            display: inline-block;;
+            width: 2px;
+            height: 6px;
+            background-color: #fff;
+            position: absolute;
+            left: -2px;
+            bottom: 0;
+        }
+        
+        .bottom-section-left, .bottom-section-right{
+            width: 400px;
+            display: inline-block;
+        }
+        .bottom-section-left h3:before{
+            content: "";
+            width: 25px;
+            height: 24px;
+            display: inline-block;
+            background-image: url(img/img-8.png);
+            position: absolute;
+            left: -81px;
+            top: 3px;
+        }
+        .bottom-section-right{
+            float: right;
+        }
+        .bottom-section-right .content{
+            padding: 0;
+            margin: 0;
+        }
+        .bottom-section-right h3{
+            width: 147px;
+            padding-left: 50px;
+            margin: 20px 0;
+        }
+        .bottom-section-right h3:before{
+            content: "";
+            width: 25px;
+            height: 24px;
+            display: inline-block;
+            background-image: url(img/img-8.png);
+            position: absolute;
+            left: -11px;
+            top: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap clearfix">
+        <header>
+            <div class="info">
+                <div class="avatar">
+                    <img src="img/img-7.png" alt="">
+                </div>
+                <div class="name">
+                    <h1>David Smith</h1>
+                    <p>Graphic & Web Designer</p>
+                </div>
+            </div>
+            <div class="contacts">
+                <h2 class="contacts-captions">CONTACTS</h2>
+                <div class="contacts-items">A 59 Somewhere Street, NY, USA</div>
+                <div class="contacts-items">M 12 395 394 3048</div>
+                <div class="contacts-items">E steve@gmail.com</div>
+                <div class="contacts-items">B www.behance.net/desgin</div>
+            </div>
+        </header>
+        <section class="normal-section">
+            <h2>WORK EXPERIENCE</h2>
+            <div class="content">
+                <h3>Marketplaces</h3><span> / 2012-2013</span>
+                <p>some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words</p>
+                <h3>Apple Inc</h3><span> / 2013-2014</span>
+                <p> some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words</p>
+                <h3>Aroma Bar Netword</h3><span> / 2014-now</span>
+                <p> some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words</p>
+            </div>
+        </section>
+        <section class="normal-section">
+            <h2>EDUCATION</h2>
+            <div class="content">
+                <h3>College</h3><span> / 2008-2011</span>
+                <div class="detail">Visual Design Communication</div>
+                <p>some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words</p>
+                <h3>University</h3><span> / 2011-2014</span>
+                <div class="detail">Information System</div>
+                <p> some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words some words</p>
+            </div>
+        </section>
+        <section class="bottom-section-left">
+            <h2>EXTRA CURRICULAR ACTIVATIES</h2>
+            <div class="content">
+                <h3>Volunteer</h3>
+                <p> some words some words some words some wordssome words some words some wos</p>
+                <h3>Volunteer</h3>
+                <p> some words some words some words some wordssome words some  words</p>
+            </div>
+        </section><!--为了消除inline-block之间的空隙
+        --><section class="bottom-section-right">
+            <h2>PROFESIONAL SKILLS</h2>
+            <div class="content">
+                <h3>HTML&CSSS</h3>
+                <h3>JQUERY</h3>
+                <h3>JAVASCRIPT</h3>
+                <h3>PHOTOSHOP</h3>
+                <h3>SLIM</h3>
+                <h3>ILLUSTRATOR</h3>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
