@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        ul, li{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .wrap{
+            width: 960px;
+            margin: 0 auto;
+        }
+        .tab{
+            border: 1px solid #d1dbe5;
+            padding: 24px;
+            border-radius: 4px;
+        }
+        .tab>[data-role="tab-nav"]{
+            border-bottom: 1px solid #d1dbe5;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .tab>[data-role="tab-nav"] .tab-items{
+            height: 42px;
+            padding: 0 16px;
+            float: left;
+            line-height: 42px;
+            font-size: 14px;
+            color: #8391a5;
+        }.tab>[data-role="tab-nav"] .tab-items:hover{
+            cursor: pointer;
+            color: #1f2d3d;
+        }
+        .tab>[data-role="tab-content"] .tab-pane{
+            display: none;
+        }
+        .tab>[data-role="tab-nav"] .active{
+            color: #20a0ff;
+        }
+        .tab>[data-role="tab-content"] .active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="tab">
+            <ul data-role="tab-nav">
+                <li class="tab-items">用户管理</li>
+                <li class="tab-items">bbbb</li>
+                <li class="tab-items">cccccc</li>
+            </ul>
+            <ul data-role="tab-content">
+                <li class="tab-pane">1111111111</li>
+                <li class="tab-pane">222222222222</li>
+                <li class="tab-pane">333333333333</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function Tab(options){
+            var defaultOptions = {
+                element : "",
+                tabNavSelector : "[data-role = 'tab-nav']",
+                tabContentSelector : "[data-role = 'tab-content']",
+            }
+            this.options = Object.assign({}, defaultOptions, options);
+            this.init();
+        }
+
+        Tab.prototype.init = function(){
+            this.tabNav = this.options.element.querySelector(this.options.tabNavSelector);
+            this.tabContent = this.options.element.querySelector(this.options.tabContentSelector);
+            this.bindEvents();
+        }
+
+        Tab.prototype.bindEvents = function(e){
+            var self = this;// 保存this，方便后面匿名函数调用
+            self.tabNav.addEventListener("click", function(e){
+                var target = e.target;//触发事件的tab
+            
+                Array.prototype.forEach.call(target.parentElement.children, function(i){
+                    var index = Array.prototype.indexOf.call(self.tabNav.children, i);
+                    if(i === target){
+                        i.classList.add("active");
+                        self.tabContent.children[index].classList.add("active");
+                    }else{
+                        i.classList.remove("active");
+                        self.tabContent.children[index].classList.remove("active");
+                    }
+                })
+            })
+        }
+
+        function $(id){
+            return document.querySelector(id);
+        }
+        function $$(cls){
+            return document.querySelectorAll(cls);
+        }
+
+        var newTab = new Tab({
+            element : $$(".tab")[0],
+        })
+
+    </script>
+    
+</body>
+</html>
