@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>modal</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .clearfix:after{
+            display: block;
+            content: "";
+            clear: both;
+        }
+        .modal-wrap{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #000;
+            opacity: 0.4;
+            z-index: 99;
+        }
+        .modal-box{
+            width: 420px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            background-color: #fff;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+        .modal-header{
+            padding: 20px 20px 0;
+        }
+        .modal-title{
+            height: 18px;
+            font-weight: 700;
+            color: #333;
+        }
+        .modal-close{
+            color: #999;
+            position: absolute;
+            right: 20px;
+            top: 19px;
+            cursor: pointer;
+        }
+        .modal-close:hover{
+            color: #20a0ff;
+        }
+        .modal-content{
+            padding: 30px 20px;
+            margin-left: 50px;
+            font-size: 14px;
+            color: #48576a;
+        }
+        .modal-footer{
+            padding: 10px 20px 15px;
+        }
+        .btn{
+            width: 60px;
+            height: 36px;
+            border: 1px solid #bfcbd9;
+            border-radius: 4px;
+            float: right;
+            margin-left: 10px;
+            background-color: #fff;
+            color: #1F2D39;
+            padding: 10px 15px;
+            line-height: 1;
+            cursor: pointer;
+            outline: none;
+        }
+        .btn-default:hover{
+            color: #20a0ff;
+            border-color: #20a0ff;
+        }
+        .btn-primary{
+            background-color: #20a0ff;
+            color: #fff;
+        }
+        .btn-primary:hover{
+            background-color: #4db3ff;
+            border-color: #4db3ff;
+        }
+        #myModal{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn" data-toggle="modal" data-target="#myModal">点我</button>
+    <div id="myModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title">提示</div>
+                <span class="modal-close">X</span>
+            </div>        
+            <div class="modal-content">此操作将永久删除该文件, 是否继续?</div>
+            <div class="modal-footer clearfix">
+                <button class="btn btn-primary">确定</button>
+                <button class="btn btn-default modal-cancel">取消</button>
+            </div>
+        </div>
+        <div class="modal-wrap"></div>
+    </div>
+    
+    <script>
+        function $(id){
+            return document.querySelector(id);
+        }
+        function $$(cls){
+            return document.querySelectorAll(cls);
+        }
+        function Modal(options){
+            var defaultOptions = {
+                trigger : $("[data-toggle = 'modal']"),
+                event : "click",
+                modal : "#myModal",
+            }
+
+            this.options = Object.assign({}, defaultOptions, options);
+            this.modal = $(this.options.modal);
+            this.close = $(this.options.modal+" .modal-close");
+            this.cancel = $(this.options.modal+" .modal-cancel");
+            this.wrap = $(this.options.modal+" .modal-wrap");
+
+            this.init();
+        }
+
+        Modal.prototype.init = function(){
+            this.bindModal();
+            this.bindCloseEvent(this.close);
+            this.bindCloseEvent(this.cancel);
+            this.bindCloseEvent(this.wrap);
+        }
+
+        Modal.prototype.bindModal = function(){
+            this.options.trigger.addEventListener(this.options.event, (e)=>{
+                this.showModal();
+                e.stopPropagation()
+            })
+        }
+
+        Modal.prototype.bindCloseEvent = function(ele){
+            ele.addEventListener("click", (e)=>{
+                this.hideModal();
+                e.stopPropagation()
+            })
+        }
+
+        Modal.prototype.showModal = function(){
+            this.modal.style.display = "block";
+        }
+
+        Modal.prototype.hideModal = function(){
+            this.modal.style.display = "none";
+        }
+
+        var newModal = new Modal()
+
+    </script>
+</body>
+</html>
