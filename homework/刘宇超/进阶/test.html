@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                if(xhr.status === 200 || xhr.status === 304){
+                    var result = JSON.parse(xhr.responseText);
+                    console.log(result);
+                }
+            }
+        }
+        xhr.open("GET", "http://www.test.com:8080/getdata/");
+        xhr.send();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
