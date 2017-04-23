@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        .block{
+            height: 1000px;
+            background-color: #ccc;
+        }
+        img{
+            height: 300px;
+            
+        }
+        ul, li{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/6.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/7.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/10.jpg"></li>    
+    </ul>
+    
+</body>
+<script>
+$(function(){
+    $.fn.lazyload = function(){
+
+        function isVisible($node){
+           var offsetTop = $node.offset().top;
+           var scrollTop = $(window).scrollTop();
+           var windowHeight = $(window).height();
+           var nodeHeight = $node.height();
+           if(offsetTop < scrollTop + windowHeight && offsetTop + nodeHeight > scrollTop){
+              $node.addClass("loaded");
+    //        给在视区内的元素添加一个loaded标记
+              return true;
+           }
+        }
+
+        function showImg($img){
+            $img.attr("src", $img.attr("data-src"));
+            console.log(true);
+        }
+
+        function isloaded($node){
+            return $node.not(".loaded").length === 0;
+        }
+    //   加载过返回true,未加载过返回false;
+        
+        function isShow(){
+            var curimg = $(this);
+            if(isloaded(curimg)){
+                return;
+        //        若加载过则直接退出，否则继续                    
+            }else if(isVisible(curimg)){
+                showImg(curimg);
+            }
+        }
+
+        function init(event){
+            event.data.imgs.each(isShow)
+        }
+
+        $(this).each(isShow);
+        $(window).on("scroll", {imgs : $(this)}, init)
+    }
+
+    $(".lazy-load").lazyload();
+});
+    
+</script>
+</html>

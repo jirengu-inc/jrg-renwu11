@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    html,body,h2,p,ul,li{
+          margin: 0;
+          padding: 0;
+        }
+        a{
+          color: #333;
+          text-decoration: none;
+        }
+
+        .container{
+          max-width: 600px;
+          margin: 0 auto;
+        }
+        .item{
+          margin-top: 20px;
+        }
+        .item:after{
+          content: '';
+          display: block;
+          clear: both;
+        }
+        .item .thumb img{
+          width: 50px;
+          height: 50px;
+        }
+        .item .thumb {
+          float: left;
+        }
+        .item h2{
+          margin-left: 60px;
+          font-size: 14px;
+
+        }
+        .item p{
+          margin-left: 60px;
+          font-size: 14px;
+          margin-top: 10px;
+          color: #ccc;
+        }
+        .load-more{
+          visibility: hidden;
+          margin: 3px;
+          height: 3px;
+        }
+
+  </style>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+  <div class="container">
+    <ul class="news">
+
+    </ul>
+    <p class="load-more"></p>
+  </div>
+</body>
+<script>
+$(function(){
+    $.fn.lazyload = function(){
+        function isVisible($node){
+           var offsetTop = $node.offset().top;
+           var scrollTop = $(window).scrollTop();
+           var windowHeight = $(window).height();
+           var nodeHeight = $node.height();
+           if(offsetTop < scrollTop + windowHeight && offsetTop + nodeHeight > scrollTop){
+              $node.addClass("loaded");
+    //        给在视区内的元素添加一个loaded标记
+              return true;
+           }
+        }
+
+        function showImg($img){
+            $img.attr("src", $img.attr("data-src"));
+            console.log(true);
+        }
+
+        function isloaded($node){
+            return $node.not(".loaded").length === 0;
+        }
+    //   加载过返回true,未加载过返回false;
+        
+        function isShow(){
+            var curimg = $(this);
+            if(isloaded(curimg)){
+                return;
+        //        若加载过则直接退出，否则继续                    
+            }else if(isVisible(curimg)){
+                showImg(curimg);
+            }
+        }
+
+        function init(event){
+            event.data.imgs.each(isShow)
+        }
+
+        $(this).each(isShow);
+        $(window).on("scroll", {imgs : $(this)}, init)
+    }
+
+    var pageIndex = 0;
+
+    $.ajax({
+      type: "GET",
+      url: "http://test.com:8080/getNews",
+      dataType: "json",
+      data: {
+        page: pageIndex
+      }
+      success: function(data){
+        console.log(data)
+      },
+      error: function(){
+        console.log("error")
+      }
+    })
+});
+</script>
+</html>
