@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: 350px;
+            margin: 0 auto;
+        }
+        .carousel{
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel h3{
+            background-color: #999;
+            line-height: 150px;
+            margin: 0;
+            text-align: center;
+        }
+        .carousel .carousel-item:nth-child(2n) h3{
+            background-color: #666;
+        }
+        .carousel-container{
+            position: relative;
+        }
+        .carousel-item{
+            position: absolute;
+            width: 100%;
+            transition: .4s ease-in-out;
+        }
+        .arrow{
+            position: absolute;
+            z-index: 10;
+            border: none;
+            outline: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(31,45,61,.11);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .arrow-left{
+            left: 16px;
+        }
+        .arrow-right{
+            right: 16px;
+        }
+        .carousel-indicators, .carousel-indicator{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .carousel-indicators{
+            position: absolute;
+            z-index: 2;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+        }
+        .carousel-indicator{
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 12px 0;
+            height: 26px;
+            width: 30px;
+            cursor: pointer;
+        }
+        .carousel-button{
+            background-color: #fff;
+            opacity: .48;
+            display: block;
+            width: 30px;
+            height: 2px;
+            padding: 0;
+            margin: 0;
+            outline: none;
+            border: none;
+        }
+        .carousel-indicators .is-active button{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="carousel">
+            <div class="carousel-container">
+                <button class="arrow arrow-left"><</button>
+                <button class="arrow arrow-right">></button>
+                <div class="carousel-item is-active">
+                    <h3>1</h3>
+                </div>
+                <div class="carousel-item">
+                    <h3>2</h3>
+                </div>
+                <div class="carousel-item">
+                    <h3>3</h3>
+                </div>
+                <div class="carousel-item">
+                    <h3>4</h3>
+                </div>
+            </div>
+            <ul class="carousel-indicators">
+                <li class="carousel-indicator is-active"><button class="carousel-button"></button></li>
+                <li class="carousel-indicator"><button class="carousel-button"></button></li>
+                <li class="carousel-indicator"><button class="carousel-button"></button></li>
+                <li class="carousel-indicator"><button class="carousel-button"></button></li>
+            </ul>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $(function(){
+            $.fn.Carousel = function(options){
+                var defaultOptions = {
+                    height: "150",
+                    arrow: "always",
+                }
+
+                var options = Object.assign({}, defaultOptions, options);
+                $(this).children(".carousel-container").height(options.height);
+
+                function carousel(){
+                    var change = 0;             
+                    var carousel = $(this);
+                    var width = carousel.width();
+                    var container = carousel.find("carousel-container")
+                    var arrowLeft = carousel.find(".arrow-left");
+                    var arrowRight = carousel.find(".arrow-right");
+                    var items = carousel.find(".carousel-item");
+                    var itemsLen = items.length;
+                    var deviantXLimit = getlimit();
+
+                    
+                    function getlimit(){
+                        if(itemsLen % 2 === 0){
+                            return {
+                                max: itemsLen / 2 * width,
+                                min: -(itemsLen / 2 - 1) * width,
+                            }
+                        }else{
+                            return {
+                                max: (itemsLen - 1) / 2 * width,
+                                min: -(itemsLen - 1) / 2 * width,
+                            }
+                        }
+                    }
+                    
+
+                    function setActiveItem(change){
+                        items.each(function(){
+                            var index = items.index(this);
+                            var deviantX = (index-change) * width;
+                            if(deviantX > deviantXLimit.max){
+                                $(this).css("transform", "translateX(" + deviantXLimit.min + "px)");
+                            }else if(deviantX < deviantXLimit.min){
+                                $(this).css("transform", "translateX(" + deviantXLimit.max + "px)");
+                            }else{
+                                $(this).css("transform", "translateX(" + deviantX  + "px)");
+                            }
+                            
+                        })
+                    }
+
+                    function next(){
+                        if(change === itemsLen-1){
+                            change = 0
+                        }else{
+                            change += 1;
+                        }
+        
+                        setActiveItem(change);
+                    }
+
+                    function prev(){
+                        if(change === 0){
+                            change = itemsLen-1;
+                        }else{
+                            change -= 1;
+                        }
+
+                        setActiveItem(change);
+                    }
+
+                    setActiveItem(0);
+
+
+                    arrowRight.on("click", function(){
+                        next();
+                    })
+                    arrowLeft.on("click", function(){
+                        prev();
+                    })
+
+                }
+
+                $(this).each(carousel);
+            }
+
+            $(".carousel").Carousel()
+        })
+    </script>
+</body>
+</html>
