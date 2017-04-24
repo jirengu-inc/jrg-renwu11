@@ -43,11 +43,6 @@
           margin-top: 10px;
           color: #ccc;
         }
-        .load-more{
-          visibility: hidden;
-          margin: 3px;
-          height: 3px;
-        }
 
   </style>
   <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -55,70 +50,67 @@
 <body>
   <div class="container">
     <ul class="news">
-
     </ul>
-    <p class="load-more"></p>
   </div>
 </body>
 <script>
 $(function(){
-    $.fn.lazyload = function(){
-        function isVisible($node){
-           var offsetTop = $node.offset().top;
-           var scrollTop = $(window).scrollTop();
-           var windowHeight = $(window).height();
-           var nodeHeight = $node.height();
-           if(offsetTop < scrollTop + windowHeight && offsetTop + nodeHeight > scrollTop){
-              $node.addClass("loaded");
-    //        给在视区内的元素添加一个loaded标记
-              return true;
-           }
-        }
+    var pageIndex = 0;
+    var isOver = false;
+    var lock = true;
 
-        function showImg($img){
-            $img.attr("src", $img.attr("data-src"));
-            console.log(true);
+    function isShow(){
+        if(!lock || isOver){
+          return ;
         }
-
-        function isloaded($node){
-            return $node.not(".loaded").length === 0;
+        lock = false;
+        if($(".news").offset().top + $(".news").height() > $(window).scrollTop() + $(window).height()){
+          // 新闻包裹层底部在可视区之下，则直接返回
+          lock = true;
+          return ; 
         }
-    //   加载过返回true,未加载过返回false;
-        
-        function isShow(){
-            var curimg = $(this);
-            if(isloaded(curimg)){
-                return;
-        //        若加载过则直接退出，否则继续                    
-            }else if(isVisible(curimg)){
-                showImg(curimg);
-            }
-        }
-
-        function init(event){
-            event.data.imgs.each(isShow)
-        }
-
-        $(this).each(isShow);
-        $(window).on("scroll", {imgs : $(this)}, init)
+        $.ajax({
+          type: "GET",
+          url: "http://test.com:8080/getNews",
+          dataType: "json",
+          data: {
+            page: pageIndex
+          },
+          success: function(res){
+            pageIndex++;
+            appendHtml(res.data);
+            lock = true;
+            isShow();
+          },
+          error: function(){
+            console.log("error");
+            lock = true;
+          }
+        })
     }
 
-    var pageIndex = 0;
+    function appendHtml(news){
+      if(news.length === 0){
+        isOver = true;
+        $('.container').append('<p>没有更多数据了~</p>')
+        return;
+      }
+      var htmls = '';
+      $.each(news, function(){
+        htmls += '<li class="item">';
+        htmls += '<a href="' + this.link + '">';
+        htmls += '<div class="thumb"> <img src="' + this.img +'"></div>';
+        htmls += '<h2>'+this.title+'</h2>';
+        htmls += '<p>'+this.brif+'</p>';
+        htmls += '</a></li>';
+      })
 
-    $.ajax({
-      type: "GET",
-      url: "http://test.com:8080/getNews",
-      dataType: "json",
-      data: {
-        page: pageIndex
-      }
-      success: function(data){
-        console.log(data)
-      },
-      error: function(){
-        console.log("error")
-      }
-    })
+      $('.news').append(htmls);
+    }
+
+    $(window).on("scroll", isShow);
+
+    isShow();
 });
 </script>
 </html>
