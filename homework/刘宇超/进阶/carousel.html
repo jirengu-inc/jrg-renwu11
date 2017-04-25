@@ -11,6 +11,7 @@
         .carousel{
             overflow: hidden;
             position: relative;
+            margin: 50px 0;
         }
         .carousel h3{
             line-height: 150px;
@@ -97,7 +98,34 @@
 </head>
 <body>
     <div class="wrap">
-        <div class="carousel">
+        <h3>一般的滚动轮播</h3>
+        <div class="carousel" id="transform-demo">
+            <div class="carousel-container">
+                <button class="arrow arrow-left"><</button>
+                <button class="arrow arrow-right">></button>
+
+                <div class="carousel-item">
+                    <img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" alt="">
+                </div>
+            </div>
+            <ul class="carousel-indicators">
+                <li class="carousel-indicator"><button class="carousel-button"></button></li>
+                <li class="carousel-indicator"><button class="carousel-button"></button></li>
+                <li class="carousel-indicator"><button class="carousel-button"></button></li>
+                <li class="carousel-indicator"><button class="carousel-button"></button></li>
+            </ul>
+        </div>
+        <h3>渐变轮播</h3>
+        <div class="carousel" id="shade-demo">
             <div class="carousel-container">
                 <button class="arrow arrow-left"><</button>
                 <button class="arrow arrow-right">></button>
@@ -133,6 +161,7 @@
                     initialIndex: 0,
                     autoplay: false,
                     interval: 1000,
+                    type: "transform",
                 }
 
                 var options = Object.assign({}, defaultOptions, options);
@@ -144,7 +173,7 @@
                     var lock = true;           
                     var carousel = $(this);
                     var width = carousel.width();
-                    var container = carousel.find("carousel-container");
+                    var container = carousel.find(".carousel-container");
                     var arrow = carousel.find(".arrow")
                     var arrowLeft = carousel.find(".arrow-left");
                     var arrowRight = carousel.find(".arrow-right");
@@ -157,29 +186,45 @@
                     init();
     
                     function init(){
-                        translateItems();
+                        initItem();
+                        initIndicator();
+                        initAutoPlay();
+                        initArrow();
+                    }
 
-                        var inittimer = setInterval(function(){
-                            items.css("transition", ".4s ease-in-out");
-                            clearInterval(inittimer);
-                        },0)
+                    function initItem(){
+                        
 
+                        switch(options.type){
+                            case "shade":
+                                items.hide();
+                                setActiveItem();
+                                $(items[change]).show();
+                                break;
+                            case "transform":
+                                carouselTransform();
+                                var inittimer = setInterval(function(){
+                                    items.css("transition", ".4s ease-in-out");
+                                    clearInterval(inittimer);
+                                },0)
+                                break;
+                        }
+
+                        
+                    }
+
+                    function initIndicator(){
                         indicators.on("click", ".carousel-indicator", function(){
                             if(!lock){
                                 return ;
                             }
                             lock = false;
                             change = $(this).parent().children().index(this);
-                            translateItems();
+                            carouselTransform();
                         })
+                    }
 
-                        arrowRight.on("click", function(){
-                            next();
-                        })
-                        arrowLeft.on("click", function(){
-                            prev();
-                        })
-
+                    function initAutoPlay(){
                         if(options.autoplay === true){
                             startAutoPlay();
 
@@ -190,6 +235,15 @@
                                 startAutoPlay();
                             })
                         }
+                    }
+
+                    function initArrow(){
+                        arrowRight.on("click", function(){
+                            next();
+                        })
+                        arrowLeft.on("click", function(){
+                            prev();
+                        })
 
                         switch (options.arrow){
                             case "hover":                                
@@ -227,29 +281,39 @@
                         }, 300)
                     }
 
-                    function translateItems(){
-                        setActiveItem();
+                    function carouselTransform(){
+                        
 
-                        if(itemsLen === 2){
-                            items.each(function(){
-                                var index = items.index(this);
-                                var relIndex = index-change;
-                                $(this).css("transform", "translateX(" + relIndex * width + "px) scale(1)");
-                            })
-                        }else{
-                            items.each(function(){
-                                var index = processIndex(items.index(this), change, itemsLen);  
-                                var relIndex = index-change;
-                                $(this).css("transform", "translateX(" + relIndex * width + "px) scale(1)");  
-                            })
-                        }
-                        waitAnimate();
+                        switch(options.type){
+                            case "shade":
+                                container.find(".is-active").fadeOut();
+                                setActiveItem();
+                                $(items[change]).fadeIn();
+                                waitAnimate();
+                                break;
+                            case "transform":
+                                setActiveItem();
+                                if(itemsLen === 2){
+                                    items.each(function(){
+                                        var index = items.index(this);
+                                        var relIndex = index-change;
+                                        $(this).css("transform", "translateX(" + relIndex * width + "px) scale(1)");
+                                    })
+                                }else{
+                                    items.each(function(){
+                                        var index = processIndex(items.index(this), change, itemsLen);  
+                                        var relIndex = index-change;
+                                        $(this).css("transform", "translateX(" + relIndex * width + "px) scale(1)");  
+                                    })
+                                }
+                                waitAnimate();
+                                break;
+                        }    
                     }
 
                     function setActiveItem(){
-                        items.removeClass("is-active");
+                        carousel.find(".is-active").removeClass("is-active");
                         $(items[change]).addClass("is-active");
-                        indicator.removeClass("is-active");
                         $(indicator[change]).addClass("is-active")                       
                     }
 
@@ -277,7 +341,7 @@
                             change += 1;
                         }
         
-                        translateItems()
+                        carouselTransform()
                     }
 
                     function prev(){
@@ -291,12 +355,16 @@
                             change -= 1;
                         }
 
-                        translateItems()
+                        carouselTransform()
                     }
                 }
             }
-            $(".carousel").Carousel({
-                height: 150
+            $("#transform-demo").Carousel({
+                height: 150,
+            })
+            $("#shade-demo").Carousel({
+                height: 150,
+                type: "shade",
             })
         })
     </script>
