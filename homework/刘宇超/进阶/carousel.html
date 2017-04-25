@@ -274,23 +274,27 @@
                         clearInterval(autoInterval);
                     }
 
-                    function waitAnimate(){
+                    function waitAnimate(time){
                         var timer = setInterval(function(){
                             lock = true;
                             clearInterval(timer);
-                        }, 300)
+                        }, time)
                     }
 
                     function carouselTransform(){
-                        
-
+                        if(container.find(".is-active")[0] === items[change]){
+                            lock = true;
+                            return;
+                        }
+                    
                         switch(options.type){
                             case "shade":
                                 container.find(".is-active").fadeOut();
                                 setActiveItem();
                                 $(items[change]).fadeIn();
-                                waitAnimate();
+                                waitAnimate(600);
                                 break;
+
                             case "transform":
                                 setActiveItem();
                                 if(itemsLen === 2){
@@ -306,7 +310,8 @@
                                         $(this).css("transform", "translateX(" + relIndex * width + "px) scale(1)");  
                                     })
                                 }
-                                waitAnimate();
+                                waitAnimate(300);
+
                                 break;
                         }    
                     }
