@@ -276,6 +276,7 @@
 
                     function waitAnimate(time){
                         var timer = setInterval(function(){
+                            setActiveItem();
                             lock = true;
                             clearInterval(timer);
                         }, time)
@@ -289,14 +290,15 @@
                     
                         switch(options.type){
                             case "shade":
-                                container.find(".is-active").fadeOut();
-                                setActiveItem();
-                                $(items[change]).fadeIn();
-                                waitAnimate(600);
+
+                                container.find(".is-active").fadeOut(400);
+                                $(items[change]).fadeIn(400);
+                                waitAnimate(400);
                                 break;
 
                             case "transform":
-                                setActiveItem();
+                                $(items[change]).addClass("is-active");
+
                                 if(itemsLen === 2){
                                     items.each(function(){
                                         var index = items.index(this);
@@ -310,8 +312,7 @@
                                         $(this).css("transform", "translateX(" + relIndex * width + "px) scale(1)");  
                                     })
                                 }
-                                waitAnimate(300);
-
+                                waitAnimate(400);
                                 break;
                         }    
                     }
