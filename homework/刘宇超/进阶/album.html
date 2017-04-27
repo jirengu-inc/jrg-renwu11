@@ -74,31 +74,30 @@ $(function(){
         var lock;
         var _this = this;
         this.options.container.width(this.options.containerWidth);
-        this.getImg(this.options.pageCount, this.options.curPage);
-        $(window).on("click", function(){
-            // if(lock){
-            //     clearTimeout(lock);
-            // }
-            // lock = setTimeout(function(){
-            //     _this.checkShow();
-            // },100)
-            _this.getImg(_this.options.pageCount, _this.options.curPage);
+        this.checkShow();
+        $(window).on("scroll", function(){
+            if(lock){
+                clearTimeout(lock);
+            }
+            lock = setTimeout(function(){
+                _this.checkShow();
+            },100)
         })
 
     }
 
     Waterfall.prototype.checkShow = function(){
-        // var scrollTop = $(window).scrollTop();
-        // var windowHeight = $(window).height();
-        // var containerHeight = this.options.container.height();
-        // if(containerHeight < windowHeight + scrollTop + 100){
-        //     this.getImg(this.options.pageCount, this.options.curPage);
-        // }
+        var scrollTop = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        var containerHeight = this.options.container.height();
+        if(containerHeight < windowHeight + scrollTop){
+            this.getImg(this.options.pageCount, this.options.curPage);
+        }
     }
 
     Waterfall.prototype.getImg = function(count, cur){
         var _this = this;
-        var images = $.ajax({
+        $.ajax({
             url: 'http://platform.sina.com.cn/slide/album_tech',
             dataType: 'jsonp', 
             jsonp:"jsoncallback",
@@ -106,16 +105,15 @@ $(function(){
                 app_key: '1271687855',
                 num: count,
                 page: cur,
-            },
-            success: function(res){
-                _this.setImg(res.data);
-                _this.options.curPage += 1;
-                
-            },
-            error: function(){
-                console.log("error");
-            }
-        })
+            },  
+        }).done(function(res){
+                if(res && res.status && res.status.code === "0"){
+                    _this.setImg(res.data);
+                    _this.options.curPage += 1;
+                }else{
+                    console.log("error");
+                }
+            })
     }
 
     Waterfall.prototype.setImg = function(imgs){
@@ -145,10 +143,11 @@ $(function(){
     Waterfall.prototype.createImg = function(img){
         var item = ''
             item += '<li class="item">';
-            item += ' <a href="'+ img.url +'" class="link"><img class="lazy-load" data-src="' + img.img_url + '" src="1"></a>';
+            item += ' <a href="'+ img.url +'" class="link"><img class="lazy-load" data-src="' + img.img_url + '"alt=""></a>';
             item += ' <h4 class="header">'+ img.short_name +'</h4>';
             item += '<p class="desp">'+img.short_intro+'</p>';
             item += '</li>';
+
         item = $(item).width(this.colwidth)
                       .css("margin", this.options.gutterY + "px " + this.options.gutterX/2 + "px");
         return item;
@@ -168,47 +167,6 @@ $(function(){
     }); 
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $.fn.lazyload = function(obj, handler, args){
 
     function isVisible($node){
@@ -216,7 +174,7 @@ $.fn.lazyload = function(obj, handler, args){
        var scrollTop = $(window).scrollTop();
        var windowHeight = $(window).height();
        var nodeHeight = $node.height();
-       if(offsetTop < scrollTop + windowHeight && offsetTop + nodeHeight > scrollTop){
+       if(offsetTop < scrollTop + windowHeight){
           $node.addClass("loaded");
 //        给在视区内的元素添加一个loaded标记
           return true;
