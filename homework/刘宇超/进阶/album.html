@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        #container{
+            margin: 0 auto;
+            position: relative;
+        }
+        ul, li{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .item{
+            box-sizing: border-box;
+            position: absolute;
+            padding: 0 0 10px 0;
+            border: 1px solid #DFDFDF;
+            background: #FFF;
+            transition: all .8s;
+        }
+        .item a{
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .item img{
+            width: 100%;
+        }
+        #container .item .header{
+            height: 25px;
+            margin: 0 12px;
+            border-bottom: 1px solid #DBDBDB;
+        }
+        #container .desp{
+            font-size: 12px;
+            line-height: 1.8;
+            margin: 10px 15px 0;
+            color: #777371;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+
+$(function(){
+    
+    function Waterfall(options){
+        var defaultOptions = {
+            pageCount : 10,
+            curPage : 1
+        }
+
+        this.options = Object.assign({}, defaultOptions, options);
+        this.colwidth = (this.options.containerWidth - (this.options.gutterX * (this.options.waterfallColumn))) / this.options.waterfallColumn;
+        this.itemArr = [];
+        for(let i=0; i<this.options.waterfallColumn; i++){
+            this.itemArr.push(0);
+        }
+
+        this.init();
+    }
+
+    Waterfall.prototype.init = function(){
+        var lock;
+        var _this = this;
+        this.options.container.width(this.options.containerWidth);
+        this.getImg(this.options.pageCount, this.options.curPage);
+        $(window).on("click", function(){
+            // if(lock){
+            //     clearTimeout(lock);
+            // }
+            // lock = setTimeout(function(){
+            //     _this.checkShow();
+            // },100)
+            _this.getImg(_this.options.pageCount, _this.options.curPage);
+        })
+
+    }
+
+    Waterfall.prototype.checkShow = function(){
+        // var scrollTop = $(window).scrollTop();
+        // var windowHeight = $(window).height();
+        // var containerHeight = this.options.container.height();
+        // if(containerHeight < windowHeight + scrollTop + 100){
+        //     this.getImg(this.options.pageCount, this.options.curPage);
+        // }
+    }
+
+    Waterfall.prototype.getImg = function(count, cur){
+        var _this = this;
+        var images = $.ajax({
+            url: 'http://platform.sina.com.cn/slide/album_tech',
+            dataType: 'jsonp', 
+            jsonp:"jsoncallback",
+            data: {
+                app_key: '1271687855',
+                num: count,
+                page: cur,
+            },
+            success: function(res){
+                _this.setImg(res.data);
+                _this.options.curPage += 1;
+                
+            },
+            error: function(){
+                console.log("error");
+            }
+        })
+    }
+
+    Waterfall.prototype.setImg = function(imgs){
+        var _this = this;
+        var fuc = this.waterfallPlace;
+        for(let i of imgs){
+            var item = this.createImg(i)
+            this.appendImg(item);
+            if(this.options.lazyload === true){
+                item.find(".lazy-load").lazyload(_this, fuc, item);
+            }
+        }
+    }
+
+    Waterfall.prototype.waterfallPlace = function(item){
+        
+        var minValue = Math.min.apply(null, this.itemArr);
+        var minIndex = this.itemArr.indexOf(minValue);
+        item.css({
+            top: minValue,
+            left: (this.colwidth + this.options.gutterX) * minIndex
+        })
+        this.itemArr[minIndex] = this.itemArr[minIndex] + item.outerHeight(true)-this.options.gutterY;
+        this.options.container.height(Math.max.apply(null, this.itemArr))
+    }
+
+    Waterfall.prototype.createImg = function(img){
+        var item = ''
+            item += '<li class="item">';
+            item += ' <a href="'+ img.url +'" class="link"><img class="lazy-load" data-src="' + img.img_url + '" src="1"></a>';
+            item += ' <h4 class="header">'+ img.short_name +'</h4>';
+            item += '<p class="desp">'+img.short_intro+'</p>';
+            item += '</li>';
+        item = $(item).width(this.colwidth)
+                      .css("margin", this.options.gutterY + "px " + this.options.gutterX/2 + "px");
+        return item;
+    }
+
+    Waterfall.prototype.appendImg = function(item){
+        this.options.container.append(item)
+    }
+
+    var waterfall = new Waterfall({
+        container: $("#container"),
+        containerWidth: 900,
+        waterfallColumn: 3,
+        lazyload: true,
+        gutterX: 20,
+        gutterY: 20,
+    }); 
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$.fn.lazyload = function(obj, handler, args){
+
+    function isVisible($node){
+       var offsetTop = $node.offset().top;
+       var scrollTop = $(window).scrollTop();
+       var windowHeight = $(window).height();
+       var nodeHeight = $node.height();
+       if(offsetTop < scrollTop + windowHeight && offsetTop + nodeHeight > scrollTop){
+          $node.addClass("loaded");
+//        给在视区内的元素添加一个loaded标记
+          return true;
+       }
+    }
+
+    function showImg($img){
+        $img.attr("src", $img.attr("data-src"));
+        $img.load(function(){
+            handler.call(obj, args);
+        })
+    }
+
+    function isloaded($node){
+        return $node.not(".loaded").length === 0;
+    }
+//   加载过返回true,未加载过返回false;
+    
+    function isShow(){
+        var curimg = $(this);
+        if(isloaded(curimg)){
+            return;
+    //        若加载过则直接退出，否则继续                    
+        }else if(isVisible(curimg)){
+            showImg(curimg, handler);
+        }
+    }
+
+    function init(event){
+        event.data.imgs.each(isShow)
+    }
+
+    $(this).each(isShow);
+    $(window).on("scroll", {imgs : $(this)}, init)
+}
+</script>
+</html>
