@@ -37,14 +37,14 @@
 </body>
 <script>
 $(function(){
-    $.fn.lazyload = function(){
+    $.fn.lazyload = function(obj, handler, args){
 
         function isVisible($node){
            var offsetTop = $node.offset().top;
            var scrollTop = $(window).scrollTop();
            var windowHeight = $(window).height();
            var nodeHeight = $node.height();
-           if(offsetTop < scrollTop + windowHeight && offsetTop + nodeHeight > scrollTop){
+           if(offsetTop < scrollTop + windowHeight){
               $node.addClass("loaded");
     //        给在视区内的元素添加一个loaded标记
               return true;
@@ -53,7 +53,12 @@ $(function(){
 
         function showImg($img){
             $img.attr("src", $img.attr("data-src"));
-            console.log(true);
+            if(!handler){
+                return;
+            }
+            $img.load(function(){
+                handler.call(obj, args);
+            })
         }
 
         function isloaded($node){
@@ -67,7 +72,7 @@ $(function(){
                 return;
         //        若加载过则直接退出，否则继续                    
             }else if(isVisible(curimg)){
-                showImg(curimg);
+                showImg(curimg, handler);
             }
         }
 

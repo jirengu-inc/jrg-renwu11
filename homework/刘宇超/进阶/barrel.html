@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        #container{
+            margin: 0 auto;
+        }
+        .img-box{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+    function Barrel(options){
+        var defaultOptions = {
+
+        }
+        this.options = Object.assign({}, defaultOptions, options);
+        this.rowList = [];
+        this.rowWidth = 0;
+        this.rowHeight = 0;
+        this.cur = 0;
+        this.init();
+    }
+
+    Barrel.prototype = {
+        init: function(){
+            var _this = this;
+            
+            var imgUrls = this.getImgUrls(100);
+            this.options.container.width(this.options.containerWidth);
+            $.each(imgUrls, function(idx, url){
+                var img = new Image();
+                img.src = url;
+                img.onload = function(){
+                    _this.cur += 1;
+                    var originWidth = img.width,
+                    originHeight = img.height,
+                    ratio = originWidth/originHeight;
+
+                    var imgInfo = {
+                        target: $(img),
+                        width: _this.options.minHeight * ratio,
+                        height: _this.options.minHeight,
+                        ratio: ratio
+                    };
+
+                    _this.checkRowWidth(imgInfo);
+                }
+            })
+        },
+
+        checkRowWidth: function(imgInfo){
+            var _this = this;
+            
+            var rowWidth = 0,
+                rowHeight = 0,
+                lastImgInfo = imgInfo;
+            this.rowList.push(imgInfo);
+            $.each(_this.rowList, function(idx, imgInfo){
+                rowWidth += imgInfo.width;
+                if(rowWidth > _this.options.containerWidth ){
+                    _this.rowList.pop();
+                    rowWidth = rowWidth - lastImgInfo.width;
+                    rowHeight = _this.options.containerWidth * _this.options.minHeight / rowWidth;
+
+                    _this.createRow(rowHeight);
+                    _this.rowList = [];
+                    _this.rowList.push(lastImgInfo);
+                }
+            }) 
+            
+        },
+
+        // render: function(imgInfo){
+        //     this.rowList.pop();
+        //     this.rowWidth = this.rowWidth - imgInfo.width;
+        //     this.rowHeight = this.options.containerWidth  / this.rowWidth * this.options.minHeight;
+        //     this.createRow(this.rowHeight);
+        //     this.rowList = [];
+        //     this.rowWidth = 0;
+        //     this.rowHeight = 0;
+        //     this.rowList.push(imgInfo);
+        // },
+
+        createRow: function(rowHeight){
+            var $rowCt = $('<div class="img-row"></div>');
+            $.each(this.rowList, function(idx, imgInfo){
+                var $imgCt = $('<div class="img-box"></div>'),
+                    $img = imgInfo.target;
+                    $img.height(rowHeight);
+                    $imgCt.append($img);
+                    $rowCt.append($imgCt);
+            });
+            this.options.container.append($rowCt);
+        },
+        
+        getImgUrls: function(num){
+            var color, width, height, urls = [];
+            for (var i = 0; i < num; i++) {
+              color = Math.random().toString(16).substring(2, 8);
+              width = Math.floor(Math.random() * 200 + 100);
+              height = Math.floor(Math.random() * 100 + 150);
+              urls.push("http://placehold.it/" + width + "x" + height + "/" + color + "/fff");
+            }
+            return urls;
+        }
+    }
+
+    $(function(){
+        var barrel = new Barrel({
+            container: $("#container"),
+            containerWidth: 1000,
+            minHeight: 200,
+        })
+    });
+    </script>
+</body>
+</html>

@@ -90,7 +90,7 @@ $(function(){
         var scrollTop = $(window).scrollTop();
         var windowHeight = $(window).height();
         var containerHeight = this.options.container.height();
-        if(containerHeight < windowHeight + scrollTop){
+        if(containerHeight < windowHeight + scrollTop + 100){
             this.getImg(this.options.pageCount, this.options.curPage);
         }
     }
@@ -183,6 +183,9 @@ $.fn.lazyload = function(obj, handler, args){
 
     function showImg($img){
         $img.attr("src", $img.attr("data-src"));
+        if(!handler){
+            return;
+        }
         $img.load(function(){
             handler.call(obj, args);
         })
