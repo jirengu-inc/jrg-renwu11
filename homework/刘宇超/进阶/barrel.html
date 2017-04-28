@@ -53,12 +53,12 @@
                         ratio: ratio
                     };
 
-                    _this.checkRowWidth(imgInfo);
+                    _this.render(imgInfo);
                 }
             })
         },
 
-        checkRowWidth: function(imgInfo){
+        render: function(imgInfo){
             var _this = this;
             
             var rowWidth = 0,
@@ -79,17 +79,6 @@
             }) 
             
         },
-
-        // render: function(imgInfo){
-        //     this.rowList.pop();
-        //     this.rowWidth = this.rowWidth - imgInfo.width;
-        //     this.rowHeight = this.options.containerWidth  / this.rowWidth * this.options.minHeight;
-        //     this.createRow(this.rowHeight);
-        //     this.rowList = [];
-        //     this.rowWidth = 0;
-        //     this.rowHeight = 0;
-        //     this.rowList.push(imgInfo);
-        // },
 
         createRow: function(rowHeight){
             var $rowCt = $('<div class="img-row"></div>');
