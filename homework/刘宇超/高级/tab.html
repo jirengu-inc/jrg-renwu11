@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        ul, li{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .clearfix:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .wrap{
+            width: 960px;
+            margin: 0 auto;
+        }
+        .tab{
+            border: 1px solid #d1dbe5;
+            padding: 24px;
+            border-radius: 4px;
+        }
+        .tab>[data-role="tab-nav"]{
+            border-bottom: 1px solid #d1dbe5;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .tab [data-role="tab-nav"] .tab-items{
+            display: inline-block;
+            height: 42px;
+            padding: 0 16px;
+            float: left;
+            line-height: 42px;
+            font-size: 14px;
+            color: #8391a5;
+        }
+        .tab [data-role="tab-nav"] .tab-items:hover{
+            cursor: pointer;
+            color: #1f2d3d;
+        }
+        .tab [data-role="tab-nav"] .active{
+            color: #20a0ff;
+        }
+        .tab [data-role="tab-nav"] .active:hover{
+            color: #20a0ff;
+        }
+        .tab [data-role="tab-content"] .tab-pane{
+            display: none;
+        }
+        .tab [data-role="tab-content"] .active{
+            display: block;
+        }
+        .tab [data-role="tab-nav"] .tab-active-bar{
+            height: 3px;
+            width: 50px;
+            background: #20a0ff;
+            position: absolute;
+            bottom: -2px;
+            transition: transform .3s cubic-bezier(.645,.045,.355,1);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="tab">
+            <ul data-role="tab-nav" class="clearfix">
+                <li class="tab-items">用户管理</li>
+                <li class="tab-items">配置管理</li>
+                <li class="tab-items">角色管理</li>
+                <li class="tab-items">定时任务补偿</li>
+                <div class="tab-active-bar"></div>
+            </ul>
+            
+            <ul data-role="tab-content">                
+                <li class="tab-pane">用户管理</li>
+                <li class="tab-pane">配置管理</li>
+                <li class="tab-pane">角色管理</li>
+                <li class="tab-pane">定时任务补偿</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function Tab(options){
+            var defaultOptions = {
+                element : "",
+                tabNavSelector : "[data-role = 'tab-nav']",
+                tabContentSelector : "[data-role = 'tab-content']",
+                activeBarSelector : ".tab-active-bar",
+                defaultTab : 0,
+            }
+            this.options = Object.assign({}, defaultOptions, options);
+            this.tabNav = this.options.element.querySelector(this.options.tabNavSelector);
+            this.tabContent = this.options.element.querySelector(this.options.tabContentSelector);
+            this.activeBar = this.options.element.querySelector(this.options.activeBarSelector);
+
+            this.init();
+            return this;
+        }
+
+        Tab.prototype.init = function(){
+
+            this.bindEvents();
+            this.setDefaultTab();
+            return this;
+        }
+
+        Tab.prototype.bindEvents = function(e){
+            var self = this;// 保存this，方便后面匿名函数调用
+            self.tabNav.addEventListener("click", function(e){
+                var target = e.target;//触发事件的tab
+
+                Array.prototype.forEach.call(target.parentElement.children, function(i){
+                    var index = Array.prototype.indexOf.call(self.tabNav.children, i);
+                    if(i.nodeName === "LI"){
+                        if(i === target){
+                            self.activeBar.style.width = i.offsetWidth + "px";
+                            self.activeBar.style.transform = "translateX(" + i.offsetLeft + "px)";
+                            i.classList.add("active");
+                            self.tabContent.children[index].classList.add("active");
+                        }else{
+                            i.classList.remove("active");
+                            self.tabContent.children[index].classList.remove("active");
+                        }
+                    }                  
+                })
+                // console.log();
+            })
+            return this;
+        }
+        //设置默认展开的标签页
+        Tab.prototype.setDefaultTab = function(){
+            this.tabNav.children[this.options.defaultTab].click();
+            return this;
+        }
+
+        function $(id){
+            return document.querySelector(id);
+        }
+        function $$(cls){
+            return document.querySelectorAll(cls);
+        }
+
+        var newTab = new Tab({
+            element : $$(".tab")[0],
+            defaultTab : 1,
+        })
+
+    </script>
+    
+</body>
+</html>

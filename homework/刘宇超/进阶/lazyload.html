@@ -44,8 +44,9 @@ $(function(){
            var scrollTop = $(window).scrollTop();
            var windowHeight = $(window).height();
            var nodeHeight = $node.height();
-           if(offsetTop < scrollTop + windowHeight){
+           if(offsetTop < scrollTop + windowHeight && offsetTop + nodeHeight > scrollTop){
               $node.addClass("loaded");
+              console.log(1)
     //        给在视区内的元素添加一个loaded标记
               return true;
            }

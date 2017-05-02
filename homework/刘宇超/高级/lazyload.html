@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        .block{
+            height: 1000px;
+            background-color: #ccc;
+        }
+        img{
+            height: 300px;
+            
+        }
+        ul, li{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .demo2{
+            height: 200px;
+            font-size: 100px;
+            line-height: 100px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/6.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/7.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg"></li>
+        <li><img src="" alt="" class="lazy-load" data-src="http://cdn.jirengu.com/book.jirengu.com/img/10.jpg"></li>    
+    </ul>
+    <div >
+        <input type="text" class="demo2" value = 0>
+    </div>
+</body>
+<script>
+$(function(){
+    function Exposure(options){
+        let defaultOptions = {
+            onlyOne: true,
+            strict: true
+        };
+        let _this = this;
+        this.options = $.extend({}, defaultOptions, options);
+        this.init();
+    }
+
+    Exposure.prototype = {
+        init: function(){
+            let _this = this;
+            this.options.element.each(function(){
+                let $node = $(this);
+                _this.isShow($node);
+                $(window).on("scroll", function(){_this.isShow($node)});
+            })  
+        },
+
+        isShow: function($node){
+            if(this.options.onlyOne && this.isloaded($node)){
+                return;
+        //        若加载过则直接退出，否则继续                    
+            }else if(this.isVisible($node)){
+
+                this.options.callback($node);
+            }
+        },    
+
+        isVisible: function($node){
+           var offsetTop = $node.offset().top;
+           var scrollTop = $(window).scrollTop();
+           var windowHeight = $(window).height();
+           var nodeHeight = $node.height();
+           if(offsetTop < scrollTop + windowHeight){
+                if(this.options.strict && offsetTop + nodeHeight < scrollTop){
+                    return false;
+                }
+
+                if(this.options.onlyOne){
+                    $node.addClass("loaded");
+                    //给在视区内的元素添加一个loaded标记
+                }
+                return true;
+           }
+           return false;
+        },
+
+        isloaded: function($node){
+            return $node.not(".loaded").length === 0;
+        },
+    }
+
+
+    function showImg($img){
+        $img.attr("src", $img.attr("data-src"));
+    }
+
+    var demo = new Exposure({
+        callback: function($node){showImg($node)},
+        element: $(".lazy-load"),
+    });
+    var demo2 = new Exposure({
+        callback: function($node){
+            $node.val(function(){
+                return parseInt(this.value) + 1;
+            })
+        },
+        element: $(".demo2"),
+        onlyOne: false
+    })
+
+}); 
+</script>
+</html>
