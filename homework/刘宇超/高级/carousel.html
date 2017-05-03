@@ -154,6 +154,20 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
         $(function(){
+            function Carousel(objects){
+                var defaultOptions = {
+                    arrow: "hover",
+                    initialIndex: 0,
+                    autoplay: false,
+                    interval: 1000,
+                    type: "transform",
+                }
+
+                var options = $.extend({}, defaultOptions, options);
+                var $element = this.options.element;
+            }
+
+
             $.fn.Carousel = function(options){
 
                 var defaultOptions = {
@@ -365,13 +379,24 @@
                     }
                 }
             }
-            $("#transform-demo").Carousel({
-                height: 150,
+
+            var a = new Carousel({
+                element: $('#transform-demo'),
+                height: 150
             })
-            $("#shade-demo").Carousel({
+
+            var b = new Carousel([
+                element: $('#transform-demo'),
                 height: 150,
                 type: "shade",
-            })
+            ])
+//            $("#transform-demo").Carousel({
+//                height: 150,
+//            })
+//            $("#shade-demo").Carousel({
+//                height: 150,
+//                type: "shade",
+//            })
         })
     </script>
 </body>
