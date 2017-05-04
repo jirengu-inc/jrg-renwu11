@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .clearfix:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .wrap{
+            margin: 0 auto;
+            width:300px;
+        }
+        .carousel{
+            overflow: hidden;
+            position: relative;
+            margin: 50px 0;
+        }
+        .carousel h3{
+            line-height: 150px;
+            margin: 0;
+            text-align: center;
+            background-color: transparent;
+        }
+        .carousel-container{
+            position: relative;
+            font-size: 0;
+        }
+        .carousel-item{
+            background-color: #666;
+            display: inline-block;
+        }
+        .carousel .carousel-item:nth-child(2n){
+            background-color: #ccc;
+        }
+        .carousel .carousel-item img{
+            width: 100%;
+        }
+        .arrow{
+            position: absolute;
+            display: none;
+            z-index: 10;
+            border: none;
+            outline: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(31,45,61,.11);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .arrow-left{
+            left: 16px;
+        }
+        .arrow-right{
+            right: 16px;
+        }
+        .carousel-indicators, .carousel-indicator{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .carousel-indicators{
+            position: absolute;
+            z-index: 2;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+        }
+        .carousel-indicator{
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 12px 0;
+            height: 26px;
+            width: 30px;
+            cursor: pointer;
+        }
+        .carousel-button{
+            background-color: #fff;
+            opacity: .48;
+            display: block;
+            width: 30px;
+            height: 2px;
+            padding: 0;
+            margin: 0;
+            outline: none;
+            border: none;
+        }
+
+        .carousel-indicators .active button{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h3>一般的滚动轮播</h3>
+    <div class="carousel" id="transform-demo">
+        <div class="carousel-container clearfix">
+            <div class="carousel-item">
+                <img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" alt="">
+            </div>
+            <div class="carousel-item">
+                <img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" alt="">
+            </div>
+            <div class="carousel-item">
+                <img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" alt="">
+            </div>
+            <div class="carousel-item">
+                <img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" alt="">
+            </div>
+        </div>
+        <button class="arrow arrow-left"><</button>
+        <button class="arrow arrow-right">></button>
+
+        <ul class="carousel-indicators">
+
+            <li class="carousel-indicator"><button class="carousel-button"></button></li>
+            <li class="carousel-indicator"><button class="carousel-button"></button></li>
+            <li class="carousel-indicator"><button class="carousel-button"></button></li>
+            <li class="carousel-indicator"><button class="carousel-button"></button></li>
+        </ul>
+    </div>
+    <!--<h3>渐变轮播</h3>-->
+    <!--<div class="carousel" id="shade-demo">-->
+        <!--<div class="carousel-container">-->
+            <!--<button class="arrow arrow-left"><</button>-->
+            <!--<button class="arrow arrow-right">></button>-->
+
+            <!--<div class="carousel-item">-->
+                <!--<h3>1</h3>-->
+                <!--&lt;!&ndash;<img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" alt="">&ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="carousel-item">-->
+                <!--<h3>2</h3>-->
+                <!--&lt;!&ndash;<img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" alt="">&ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="carousel-item">-->
+                <!--<h3>3</h3>-->
+                <!--&lt;!&ndash;<img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" alt="">&ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="carousel-item">-->
+                <!--<h3>4</h3>-->
+                <!--&lt;!&ndash;<img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" alt="">&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<ul class="carousel-indicators">-->
+            <!--<li class="carousel-indicator"><button class="carousel-button"></button></li>-->
+            <!--<li class="carousel-indicator"><button class="carousel-button"></button></li>-->
+            <!--<li class="carousel-indicator"><button class="carousel-button"></button></li>-->
+            <!--<li class="carousel-indicator"><button class="carousel-button"></button></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+</div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+    $(function(){
+        function Carousel(options){
+            var defaultOptions = {
+                arrow: "hover",
+                initialIndex: 2,
+                autoplay: false,
+                interval: 1000,
+                type: "shade",
+                indicator: "hover",
+            }
+
+            this.options = $.extend({}, defaultOptions, options);
+            this.init();
+
+        }
+
+        Carousel.prototype = {
+            init: function () {
+                this.$element = this.options.element;
+                this.change = this.options.initialIndex;
+                this.width = this.$element.width();
+                this.container = this.$element.find(".carousel-container");
+                this.arrow = this.$element.find(".arrow")
+                this.arrowLeft = this.$element.find(".arrow-left");
+                this.arrowRight = this.$element.find(".arrow-right");
+                this.items = this.$element.find(".carousel-item");
+                this.indicator = this.$element.find(".carousel-indicator");
+                this.indicators = this.$element.find(".carousel-indicators");
+                this.itemsLen = this.items.length;
+                this.isAnimate = false;
+
+                this.container.height(this.options.height);
+
+
+                switch(this.options.type){
+                    case "transform":
+                        this.containerWidth = this.width * (this.itemsLen + 2);
+                        this.container.width(this.containerWidth);
+                        break;
+
+                    case "shade":
+                        this.containerWidth = this.width;
+                }
+
+                this.initItem();
+                this.initArrow();
+                this.initIndicator();
+                this.initAutoplay();
+            },
+
+            initItem: function(){
+
+                switch (this.options.type){
+                    case "transform":
+                        this.container.prepend(this.items.last().clone());
+                        this.container.append(this.items.first().clone());
+                        this.container.css({left: -this.width * this.change});
+                        this.container.find(".carousel-item").width(this.width);
+                        break;
+
+                    case "shade":
+
+                        this.items.css("position", "absolute");
+                        this.items.hide();
+                        $(this.items[this.change -1]).show();
+                        break;
+                }
+
+
+            },
+            
+            initArrow: function () {
+                var _this = this;
+                this.arrowRight.on("click", function(){
+                    _this.next(1);
+                })
+                this.arrowLeft.on("click", function(){
+                    _this.prev(1);
+                })
+
+                switch (this.options.arrow){
+                    case "hover":
+                        this.$element.on("mouseenter", function(){
+                            _this.arrow.fadeIn();
+                        })
+                        this.$element.on("mouseleave", function(){
+                            _this.arrow.fadeOut();
+                        })
+                        break;
+
+                    case "always":
+                        this.arrow.show();
+                        break;
+
+                    case "never":
+                        break;
+                }
+            },
+
+            initAutoplay: function () {
+                var _this = this;
+                if(this.options.autoplay === true){
+                    this.startAutoPlay();
+
+                    this.$element.on("mouseenter", function(){
+                        _this.stopAutoPlay();
+                    })
+                    this.$element.on("mouseleave", function(){
+                        _this.startAutoPlay();
+                    })
+                }
+            },
+
+            startAutoPlay: function(){
+                var _this = this;
+                this.autoInterval = setInterval(function(){
+                    _this.next(1);
+                }, this.options.interval)
+
+            },
+
+            stopAutoPlay: function(){
+                clearInterval(this.autoInterval);
+            },
+
+            initIndicator: function () {
+                var _this = this;
+                this.indicators.on("click", ".carousel-indicator", function(){
+                    var len = $(this).parent().children().index(this) + 1 - _this.change;
+                    if(len > 0){
+                        _this.next(len);
+                    }else if(len < 0){
+                        _this.prev(-len);
+                    }
+                })
+
+                this.setBullet();
+
+                switch (this.options.indicator){
+                    case "hover":
+                        this.$element.on("mouseenter", function () {
+                            _this.indicators.fadeIn();
+                        })
+                        this.$element.on("mouseleave", function(){
+                            _this.indicators.fadeOut();
+                        })
+                        break;
+
+                    case "always":
+                        this.indicators.show();
+                        break;
+
+                    case "never":
+                        break;
+                }
+            },
+            
+            next: function (len) {
+                var _this = this;
+                if(this.isAnimate){
+                    return;
+                }
+                this.isAnimate = true;
+                switch (this.options.type){
+                    case 'transform':
+                        this.container.animate({
+                            left: -this.width * (_this.change+len)
+                        }, function(){
+                            _this.change += len;
+                            if(_this.change === _this.itemsLen+1) {
+                                _this.change = 1;
+                                _this.container.css({left: -_this.width})
+                            }
+                        })
+                        break;
+
+                    case 'shade':
+                        $(this.items[this.change-1]).fadeOut();
+                        this.change += len;
+                        if(this.change === this.itemsLen+1){
+                            this.change = 1;
+                        }
+                        $(this.items[this.change-1]).fadeIn();
+                        break;
+                }
+                this.isAnimate = false;
+                this.setBullet();
+            },
+
+            prev: function (len) {
+                var _this = this;
+                if(this.isAnimate){
+                    return;
+                }
+                this.isAnimate = true;
+                switch (this.options.type){
+                    case 'transform':
+                        this.container.animate({
+                            left: -this.width * (_this.change-len)
+                        }, function(){
+                            _this.change -= len;
+                            if(_this.change === 0) {
+                                _this.change = _this.itemsLen;
+                                console.log()
+                                _this.container.css({left: -_this.change * _this.width})
+                            }
+                        });
+                        break;
+
+                    case 'shade':
+                        $(this.items[this.change-1]).fadeOut();
+                        this.change -= len;
+                        if(this.change === 0){
+                            this.change = _this.itemsLen;
+                        }
+                        $(this.items[this.change-1]).fadeIn();
+                        break;
+                }
+                this.isAnimate = false;
+                this.setBullet();
+
+            },
+
+            setBullet: function () {
+                this.indicator.removeClass("active");
+                $(this.indicator[this.change - 1]).addClass("active");
+            }
+        }
+
+
+        new Carousel({
+            element: $('#transform-demo'),
+            height: 150
+        })
+    })
+</script>
+</body>
+</html>

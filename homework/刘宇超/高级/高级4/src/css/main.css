@@ -54,6 +54,9 @@ nav{
     width: 100%;
     z-index: 999;
 }
+header{
+    color: #fff;
+}
 section{
     padding: 150px 0;
     text-align: center;
@@ -99,7 +102,6 @@ footer{
     background: rgb(254, 197, 3);
     border-radius: 3px;
 }
-
 .header-container{
     padding: 300px 0 200px 0;
 }
@@ -125,6 +127,9 @@ footer{
 }
 .protfolio-caption{
     padding: 25px;
+}
+#protfolio .wrap{
+    position: relative;
 }
 .iconfont{
     font-family: "iconfont";
@@ -158,18 +163,6 @@ footer{
 }
 #services .items-wrap, #protfolio .items-wrap, #team .items-wrap, footer .items-wrap{
     margin-left: -30px;
-}
-#protfolio .items img{
-    display: block;
-    width: 360px;
-    height: 260px;
-}
-#protfolio h4, #protfolio p{
-    margin: 0;
-}
-#protfolio p{
-    font-style: italic;
-    font-size: 16px;
 }
 #about .items{
     position: relative;

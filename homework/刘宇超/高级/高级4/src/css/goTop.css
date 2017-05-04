@@ -1,0 +1,11 @@
+#go-top{
+    padding: 20px;
+    background: rgb(254, 197, 3);
+    position: fixed;
+    right: 100px;
+    bottom: 100px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+
+}

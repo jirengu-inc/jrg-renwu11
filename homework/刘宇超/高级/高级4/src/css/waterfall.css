@@ -1,0 +1,44 @@
+#protfolio .items-wrap{
+    margin: 0 auto;
+    position: relative;
+}
+
+#protfolio .item{
+    box-sizing: border-box;
+    position: absolute;
+    padding: 0 0 10px 0;
+    border: 1px solid #DFDFDF;
+    background: #FFF;
+    transition: all .8s;
+}
+#protfolio  .item a{
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#protfolio .item img{
+    width: 100%;
+}
+#protfolio .item .header{
+    height: 25px;
+    margin: 0 12px;
+    border-bottom: 1px solid #DBDBDB;
+}
+#protfolio .desp{
+    font-size: 12px;
+    line-height: 1.8;
+    margin: 10px 15px 0;
+    color: #777371;
+}
+#protfolio .trigger{
+    margin: 30px auto 0;
+    padding: 20px 40px;
+    background-color: rgb(254, 197, 3);
+    width: 100px;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
