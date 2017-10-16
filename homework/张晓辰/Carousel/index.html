@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    </head>
+    <style>
+        .carousel {
+            width: 320px;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel ul,
+        .carousel li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .carousel .img-ct {
+            position: absolute;
+            width: 1280px;
+            overflow: hidden;
+        }
+
+        .carousel .img-ct>li {
+            float: left;
+        }
+
+        .carousel .img-ct img {
+            width: 320px;
+            height: 180px;
+        }
+
+        .carousel .arrow {
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #fff;
+        }
+
+    </style>
+    <body>  
+        <div class="carousel">
+            <ul class="img-ct">
+                <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" alt=""></a></li>
+                <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" alt=""></a></li>
+                <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" alt=""></a></li>
+                <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg" alt=""></a></li>
+            </ul>
+            <a href="#" class="pre arrow"></a>
+            <a href="#" class="post arrow"></a>
+            <ul class="bullet">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <script>
+            
+        </script>
+    </body> 
+</html>
