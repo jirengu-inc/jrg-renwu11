@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    </head>
+    <style>
+        html,body,ul,li,p,div {
+            padding:0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        ul,li {
+            list-style: none;
+        }
+
+        .warp {
+            width: 900px;
+            margin: 0 auto;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        #pic-ct {
+            position: relative;
+        }
+
+        #pic-ct .item {
+            position: absolute;
+            padding: 0 0 10px 0;
+            width: 280px;
+            margin: 10px;
+            border: 1px solid #dfdfdf;
+            background: #fff;
+            transition: all 0.8s;
+            opacity: 0;
+        }
+
+        #pic-ct .item img {
+            margin: 10px;
+            width: 260px;
+        }
+
+        #pic-ct .item .header {
+            height: 25px;
+            margin: 0 12px;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        #pic-ct .desp {
+            font-size: 12px;
+            line-height: 1.8;
+            margin: 10px 15px 0;
+            color: #777371;
+        }
+        .load {
+            visibility: hidden;
+            height: 1px;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+    <body>  
+        <div class="warp">
+            <div class="ct-waterfall">
+                <ul id="pic-ct" class="clearfix">
+                    <li class="item hide"></li>
+                </ul>
+                <div class="load"></div>
+            </div>
+        </div>
+        <script>
+            var curPage = 1;
+            var perPageCount = 12
+            var colSumHeight = []
+            var nodeWidth = $(".item").outerWidth(true)
+            var colNum = parseInt($("#pic-ct").width()/nodeWidth)
+            for(var i=0; i < colNum; i++) {
+                colSumHeight[i] = 0
+            }
+
+            start()
+
+            $(window).scroll(function() {
+                if(isVisible($(".load"))) {
+                    start()
+                    console.log("test")
+                }
+            })
+
+
+            function start() {
+                getData(function(newsList) {
+                    $.each(newsList, function(idx, news) {
+                        var $node = getNode(news)
+                        $node.find("img").load(function(){
+                            $("#pic-ct").append($node)
+                            waterFallPlace($node)
+                        })
+                    })
+                })
+            }
+            
+
+            function getData(callback) {
+                $.ajax({
+                    url: "http://platform.sina.com.cn/slide/album_tech",
+                    dataType: "jsonp",
+                    jsonp: "jsoncallback",
+                    data: {
+                        app_key: "1271687855",
+                        num: perPageCount,
+                        page: curPage,
+                    }
+                }).done(function(ret) {
+                    if(ret && ret.status && ret.status.code === "0"){
+                        callback(ret.data);
+                        curPage++
+                    }else {
+                        console.log("get error data")
+                    }
+                })
+            }
+
+            function getNode(item){
+                var tpl = ''
+                tpl += '<li class="item">'
+                tpl += '<a href="' + item.url +'" class="link"><img src="' + item.img_url + '" alt=""></a>'
+                tpl += '<h4 class="header">' + item.short_name + '</h4>'
+                tpl += '<p class="desp">' + item.short_intro + '</p>'
+                tpl += '</li>'
+                return $(tpl)
+            }
+
+            function waterFallPlace($node) {
+                var idx = 0
+                var minSumHeight = colSumHeight[0]
+
+                for (var i = 0; i < colSumHeight.length; i++) {
+                    if(colSumHeight[i] < minSumHeight) {
+                        idx = i
+                        minSumHeight = colSumHeight[i]
+                    }
+                }
+
+                $node.css({
+                    left: nodeWidth * idx,
+                    top: minSumHeight,
+                    opacity: 1
+                })
+
+                colSumHeight[idx] += $node.outerHeight(true)
+                $("#pic-ct").height(Math.max.apply(null, colSumHeight))
+            }
+
+            function isVisible($el) {
+                var scrollH = $(window).scrollTop()
+                var winH = $(window).height()
+                var top = $el.offset().top
+
+                if( top < winH + scrollH) {
+                    return true
+                }else {
+                    return false
+                }
+            }
+
+        </script>
+    </body> 
+</html>
