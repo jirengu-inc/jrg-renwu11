@@ -1,22 +1,22 @@
-function AutoMobile(name, color, status) {
-    this.name = name 
-    this.color = color
-    this.status = status
-
-    AutoMobile.prototype.run = function() {
-        console.log("It's running")
-    }
-    AutoMobile.prototype.stop = function() {
-        console.log("It stopped")
-    }
-    AutoMobile.prototype.getStatus = function() {
-        console.log("Its status is " + Car.status)
-    }
+function Person(name, sex){
+    this.name = name
+    this.sex = sex
 }
 
-var Car = new AutoMobile("jeep", "blue", "good")
-console.log(Car.name)
-console.log(Car.color)
-Car.run()
-Car.stop()
-Car.getStatus()
+Person.prototype.getName = function(){
+    console.log("The name is " + this.name)
+};    
+
+function Male(name, sex, age){
+   Person.call(this, name, sex)
+   this.age = age
+}
+
+Male.prototype = Object.create(Person.prototype)
+Male.prototype.constructor = Male
+Male.prototype.getAge = function(){
+    console.log("The age is " + this.age)
+};
+
+var ruoyu = new Male('若愚', '男', 27);
+ruoyu.getName();

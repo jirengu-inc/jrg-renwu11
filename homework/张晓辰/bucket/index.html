@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .img-preview {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .img-row {
+            margin-bottom: 8px;
+        }
+
+        .img-row::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .img-box {
+            float: left;
+        }
+    
+        .img-line .img-box:firtst-child {
+            padding-left: 0;
+        }
+    </style>
+    <body>  
+        <div class="img-preview"></div>
+
+        <script>
+            function Barrel($ct) {
+                this.$ct = $ct
+                this.rowList = []
+                this.loadImg()
+            }
+
+            Barrel.prototype = {
+                loadImg: function() {
+                    var imgs = this.getImgUrls(20)
+                    var _this = this
+
+                    for(var i = 0; i < imgs.length; i++) {
+                        let img = new Image()
+                        img.src = imgs[i]
+                        img.onload = function() {
+                            var imgInfo = {
+                                target: img,
+                                width: 200*(img.width/img.height),
+                                height: 200
+                            }
+                            _this.render(imgInfo)
+                        }
+                    }
+                },
+
+                render: function(imgInfo) {
+                    var clientWidth = this.$ct.width();
+                    var rowWidth = 0
+                    var newRowHeight = 0
+                    var lastImgInfo = imgInfo
+
+                    this.rowList.push(imgInfo)
+                    for(var i = 0; i < this.rowList.length; i++) {
+                        rowWidth = rowWidth + this.rowList[i].width
+                    }
+
+                    if(rowWidth > clientWidth) {
+                        this.rowList.pop()
+                        rowWidth -= lastImgInfo.width
+                        newRowHeight = clientWidth * 200 / rowWidth
+                        this.layout(newRowHeight)
+                        this.rowList = []
+                        this.rowList.push(imgInfo)
+                        console.log("test")
+                    }
+                },
+
+                layout: function(newRowHeight) {
+                    var $rowCt = $('<div class="img-row"></div>')
+                    $.each(this.rowList, function(idx, imgInfo) {
+                        var $imgCt = $('<div class="img-box"></div>')
+                        var $img = $(imgInfo.target)
+                        $img.height(newRowHeight)
+                        $imgCt.append($img)
+                        $rowCt.append($imgCt)
+                    })
+                    this.$ct.append($rowCt)
+                },
+
+                getImgUrls: function(num) {
+                    var color, width, height, url = []
+                    for(var i = 0; i < num; i++) {
+                        color = Math.random().toString(16).substring(2,8)
+                        width = Math.floor(Math.random() * 100 + 50)
+                        height = Math.floor(Math.random() * 30 + 50)
+                        url.push("https://placehold.it/" + width + "x" + height + "/" + color + "/fff")
+                    }
+                    return url
+                }
+            }
+
+            new Barrel($(".img-preview"))
+        </script>
+    </body> 
+</html>
