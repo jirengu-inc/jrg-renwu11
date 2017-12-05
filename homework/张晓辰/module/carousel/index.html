@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    </head>
+    <style>
+        .carousel {
+            width: 320px;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel ul,
+        .carousel li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .carousel .img-ct {
+            position: absolute;
+            width: 1280px;
+            overflow: hidden;
+        }
+
+        .carousel .img-ct>li {
+            float: left;
+        }
+
+        .carousel .img-ct img {
+            width: 320px;
+            height: 180px;
+        }
+
+        .carousel .arrow {
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #fff;
+            line-height: 30px;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .carousel .arrow:hover {
+            opacity: 0.8;
+        }
+
+        .carousel .pre {
+            left: 10px;
+        }
+
+        .carousel .post {
+            right: 10px;
+        }
+
+        .carousel .bullet {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0;
+        }
+
+        .carousel .bullet>li {
+            display: inline-block;
+            width: 30px;
+            height: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0px 3px;
+        }
+
+        .carousel .bullet>li.active{
+            background: #ccc;
+        }
+
+    </style>
+    <body>  
+        <div class="carousel">
+            <ul class="img-ct">
+                <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" alt=""></a></li>
+                <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" alt=""></a></li>
+                <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" alt=""></a></li>
+                <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg" alt=""></a></li>
+            </ul>
+            <a href="#" class="pre arrow"><</a>
+            <a href="#" class="post arrow">></a>
+            <ul class="bullet">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="carousel">
+            <ul class="img-ct">
+                <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" alt=""></a></li>
+                <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" alt=""></a></li>
+                <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" alt=""></a></li>
+                <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg" alt=""></a></li>
+            </ul>
+            <a href="#" class="pre arrow"><</a>
+            <a href="#" class="post arrow">></a>
+            <ul class="bullet">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <script>
+            function Carousel($ct) {
+                this.$ct = $ct
+                this.init()
+                this.bind()
+            }
+
+            Carousel.prototype.init = function() {
+                var $imgs = this.$imgs = this.$ct.find(".img-ct>li")
+                var $imgCt = this.$imgCt = this.$ct.find(".img-ct")
+                var $preBtn = this.$preBtn = this.$ct.find(".pre")
+                var $postBtn = this.$postBtn = this.$ct.find(".post")
+                var $bullets = this.$bullets = this.$ct.find(".bullet li")
+
+                this.pageIndex = 0
+                this.isAnimate = false
+
+                var imgCount = this.imgCount = $imgs.length
+                var imgWidth = this.imgWidth = $imgs.width()
+                $imgCt.append($imgs.first().clone())
+                $imgCt.prepend($imgs.last().clone())
+                $imgCt.width((imgCount + 2) * imgWidth)
+                $imgCt.css({left: -imgWidth})
+            }
+
+            Carousel.prototype.bind = function() {
+                var _this = this
+                this.$preBtn.click(function(){
+                    _this.playPre(1)
+                })
+
+                this.$postBtn.click(function(){
+                    _this.playPost(1)
+                })
+
+                this.$bullets.click(function() {
+                    var index = $(this).index()
+                    if(index > pageIndex) {
+                        playPost(index - pageIndex)
+                    }else if(pageIndex > index) {
+                        playPre(pageIndex - index)
+                    }
+                })
+            }
+
+            Carousel.prototype.playPre = function(len) {
+                var _this = this
+                if(this.isAnimate) return;
+                    this.isAnimate = true;
+                    this.$imgCt.animate({
+                        left: "+=" + len * this.imgWidth
+                    }, function(){
+                        console.log(this)
+                        _this.pageIndex -= len
+                        if(_this.pageIndex < 0){
+                            _this.pageIndex = _this.imgCount - 1
+                            _this.$imgCt.css({left: -_this.imgCount * _this.imgWidth})
+                        }
+                        _this.setBullet()
+                        _this.isAnimate = false
+                    })
+            }
+
+            Carousel.prototype.playPost = function(len) {
+                var _this = this
+                if(this.isAnimate) return;
+                    this.isAnimate = true;
+                    this.$imgCt.animate({
+                        left: "-=" + len * this.imgWidth
+                    }, function() {
+                        _this.pageIndex += len
+                        if(_this.pageIndex === _this.imgCount) {
+                            _this.pageIndex = 0
+                            _this.$imgCt.css({left: -_this.imgWidth})
+                        }
+                        _this.setBullet()
+                        _this.isAnimate = false
+                    })
+            }
+
+            Carousel.prototype.setBullet = function() {
+                this.$bullets.removeClass("active")
+                        .eq(this.pageIndex)
+                        .addClass("active")
+            }
+
+            CarouselStart = (function() {
+                return {
+                    init: function($ct) {
+                        $ct.each(function(index, node) {
+                            new Carousel($(node))
+                        })
+                    }
+                }
+            })()
+
+            CarouselStart.init($(".carousel"))
+
+        </script>
+    </body> 
+</html>
