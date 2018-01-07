@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    </head>
+    <style>
+        
+    </style>
+    <body>  
+        
+        <script>
+            function Person(name, age) {
+                this.name = name
+                this.age = age
+            }
+
+            Person.prototype.sayName = function() {
+                return this.name
+            }
+
+            var student = new Person("jack", 30)
+        </script>
+    </body> 
+</html>

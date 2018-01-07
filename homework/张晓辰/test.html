@@ -4,47 +4,12 @@
         <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
     </head>
     <style>
-        .content {
-            width: 500px;
-            height: 1000px;
-            border: 1px solid blue;
-        }
-
-        .btn {
-            width: 70px;
-            height: 18px;
-            line-height: 18px;
-            text-align: center;
-            margin: 0 auto;
-            border: 1px solid black;
-            border-radius: 3px;
-            cursor: pointer;
-        }
+        
     </style>
-    <body>
-        <div class="ct"><div class="content"></div></div>
+    <body>  
+        
         <script>
-            function GoTop() {
-                this.ct = $(".ct")
-                this.target = this.createNode()
-                this.bindEvent()
-            }
-
-            GoTop.prototype.createNode = function() {
-                var html = "<div class=btn>返回顶部</div>"
-                $(".ct").append($(html))
-                return $(".btn")
-            }
-
-            GoTop.prototype.bindEvent = function() {
-                console.log(this.target)
-                this.target.on("click", function() {
-                    console.log("test")
-                    $(window).scrollTop(0)
-                })
-            }
-
-            var gotop = new GoTop()
+            
         </script>
     </body> 
 </html>

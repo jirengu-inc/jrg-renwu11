@@ -1,22 +1,36 @@
-function Person(name, sex){
-    this.name = name
-    this.sex = sex
-}
+var EventCenter = (function(){
+    var events = []
 
-Person.prototype.getName = function(){
-    console.log("The name is " + this.name)
-};    
+    function on(evt, handler) {
+        events[evt] = events[evt] || []
+        events[evt].push({handler: handler})
+    }
 
-function Male(name, sex, age){
-   Person.call(this, name, sex)
-   this.age = age
-}
+    function fire(evt, args) {
+        if(!events[evt]) {
+            return
+        }
+        for(i=0; i<events[evt].length; i++){
+            events[evt][i].handler(args)
+        }
+    }
 
-Male.prototype = Object.create(Person.prototype)
-Male.prototype.constructor = Male
-Male.prototype.getAge = function(){
-    console.log("The age is " + this.age)
-};
+    function off(evt) {
+        delete events[evt]
+    }
 
-var ruoyu = new Male('若愚', '男', 27);
-ruoyu.getName();
+    return {
+        on: on,
+        fire: fire,
+        off: off
+    }
+}())
+
+var Event = EventCenter
+
+Event.on('change', function(val){
+    console.log('change...  now val is ' + val);  
+});
+Event.fire('change', '饥人谷');
+Event.off('change');
+Event.fire('change', '饥人谷');
