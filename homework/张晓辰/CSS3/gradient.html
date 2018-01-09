@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    </head>
+    <style>
+        .cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url(http://book.jirengu.com/jirengu-inc/js-works/css3/bg.jpg) center center no-repeat;
+            background-size: cover;
+        }
+
+        .cover::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            background: linear-gradient(to bottom right, rgba(255,0,0,0), rgba(255,0,0,1));
+        }
+
+        .cover::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 50%;
+            background: linear-gradient(to bottom left, rgba(255,0,0,0), rgb(187, 61, 187));
+        }
+    </style>
+    <body>  
+        <div class="cover"></div>
+    </body> 
+</html>
