@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    </head>
+    <style>
+        div {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .rounded {
+            height: 30px;
+            width: 50px;
+            border-radius: 3px;
+            border: 1px solid red;
+            line-height: 30px;
+        }
+
+        .circle {
+            height: 50px;
+            width: 50px;
+            border-radius: 50px;
+            border: 1px solid red;
+            background-color: red;
+            line-height: 50px;
+        }
+
+        .shadow {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #333;
+            line-height: 100px;
+            box-shadow: 3px 3px 5px 3px #333;
+            margin-bottom: 50px;
+        }
+
+        .large {
+            width: 100px;
+            height: 100px;
+            border: 1px solid blue;
+            background-color: blue;
+            transition: all 1s;
+            margin-bottom: 50px;
+        }
+
+        .large:hover {
+            transform: scale(0.5,1.5)
+        }
+
+        .translate {
+            width: 100px;
+            height: 100px;
+            border: 1px solid green;
+            background-color: green;
+            transition: all 1s;
+        }
+
+        .translate:hover {
+            transform: translate(20px, 20px)
+        }
+
+        .rotate {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            background-color: red;
+            transition: all 1s;
+        }
+
+        .rotate:hover {
+            transform: rotate(30deg)
+        }
+
+        .move{
+            width: 100px;
+            height: 100px;
+            border: 1px solid yellow;
+            background-color: yellow;
+            transition: all 1s;
+        }
+
+        .move:hover {
+            transform: perspective(300px) translateZ(30px)
+        }
+
+        .rotate3d {
+            width: 100px;
+            height: 100px;
+            border: 1px solid pink;
+            background-color: pink;
+            transition: all 1s;
+        }
+
+        .rotate3d:hover {
+            transform: perspective(300px) rotateX(30deg)
+        }
+
+        .linear {
+            width: 500px;
+            height: 100px;
+            background: linear-gradient(to right, red, orange,yellow,green,blue,indigo,violet)
+        }
+
+        .radial {
+            width: 300px;
+            height: 200px;
+            background: radial-gradient(circle, red, orange,yellow,green,blue,indigo,violet)
+        }
+
+        .animation {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+        }
+
+        .animation:hover {
+            animation: 2s rainbow infinite;
+            animation-direction: alternate;
+        }
+
+        @keyframes rainbow {
+            0% { background: #c00; }
+            50% { background: orange; }
+            100% { background: yellowgreen; }
+        }
+    </style>
+    <body> 
+        <div class="rounded">圆角</div>
+        <div class="circle">圆形</div>
+        <div class="shadow">阴影</div>
+        <div class="large">放大与缩小</div>
+        <div class="translate">偏移</div>
+        <div class="rotate">旋转</div>
+        <div class="move">3d移动</div>
+        <div class="rotate3d">3d旋转</div>
+        <div class="linear">线性渐变</div>
+        <div class="radial">径向渐变</div>
+        <div class="animation">动画效果</div>
+    </body> 
+</html>
