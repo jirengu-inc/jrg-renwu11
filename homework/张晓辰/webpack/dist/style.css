@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+    font-size: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width: 980px;
+    margin: 0 auto;
+}
+.go-top {
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+    padding: 10px;
+    border: 1px solid;
+    width: 44px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.clearfix:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.carousel {
+    width: 960px;
+    height: 540px;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel .ct {
+    width: 1280px;
+}
+
+.carousel .ct li {
+    float: left;
+}
+
+.carousel .ct li img {
+    width: 960px;
+}
+
+.carousel .bullet {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.carousel .bullet li {
+    display: inline-block;
+    margin: 0 10px;
+    width: 50px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #ccc;
+    opacity: .6;
+    cursor: pointer;
+}
+
+.carousel .bullet li.active {
+    background-color: #fff;
+}
+
+.waterfall-layout .news-ct {
+    position: relative;
+    width: 900px;
+    margin: 0 auto;
+}
+
+.waterfall-layout .item {
+    position: absolute;
+    width: 260px;
+    margin: 10px;
+    padding: 9px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+}
+
+.waterfall-layout .hide {
+    visibility: hidden;
+}
+
+.waterfall-layout .item img {
+    width: 100%;
+}
+
+.waterfall-layout .item h4 {
+    margin-top: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #aaa;
+}
+
+.waterfall-layout .item p {
+    margin: 10px 5px;
+    font-size: 12px;
+    line-height: 1.8em;
+}
+
+#load-more {
+    display: block;
+    width: 900px;
+    margin: 20px auto;
+    font-size: 20px;
+    line-height: 50px;
+}
